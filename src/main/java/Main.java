@@ -51,7 +51,7 @@ public class Main {
             heroku = true;
         }
 
-        if (heroku) {
+        if (!heroku) {
 
             System.out.println("Looks like we are NOT running on heroku.");
 
