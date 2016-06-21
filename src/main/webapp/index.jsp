@@ -9,6 +9,8 @@
 <script type="text/javascript" src="scripts/json2.js"></script>
 <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="scripts/common.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css" /> 
+
 <script>
 </script>
 
@@ -26,14 +28,24 @@
    <s:submit value="Submit" />
 </s:form>
  -->
+
+<div class="title" align="center">地域取票系统</div>
+<div align="center">
 <s:form id="form1" method="post" action='gps'>
    <s:hidden id="accuracy" name="accuracy"></s:hidden>
    <s:hidden id="latitude" name="latitude"></s:hidden>
    <s:hidden id="longitude" name="longitude"></s:hidden>
    <s:hidden id="datetime" name="datetime"></s:hidden>
    <s:hidden id="timezone" name="timezone"></s:hidden>
-<a href="#0" onclick="GetGeolocation()">取票</a>
+   
+<a href="#0" class="" onclick="GetGeolocation()">
+<div class="linkbtn">
+	取票
+</div>
+</a>
+
 </s:form>
+</div>
 <!-- 
 <hr />
 <s:text name="contact" />
