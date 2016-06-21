@@ -23,6 +23,7 @@ public class GpsAction extends ActionSupport {
 				ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
 		
 		String ip = request.getLocalAddr();
+		String ip2 = request.getRemoteAddr();
 		String accuracy = request.getParameter("accuracy");
 		String latitude = request.getParameter("latitude");
 		String longitude = request.getParameter("longitude");
@@ -35,7 +36,7 @@ public class GpsAction extends ActionSupport {
 		position.setLongitude(Double.valueOf(longitude).doubleValue());
 		position.setDatetime(datetime);
 		position.setTimezone(timezone);
-		position.setIp(ip);
+		position.setIp(ip2);
 		
 		GpsService gpsService = new GpsService();
 		position.setDst(gpsService.geodeticTransform(position));
