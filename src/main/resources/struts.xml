@@ -8,18 +8,17 @@
   <constant name="struts.custom.i18n.resources" value="global" />
  
   <package name="basicstruts2" extends="struts-default">
-
-	<interceptors>
+  <interceptors>
 	  <interceptor-stack name="appDefaultStack">
 	    <interceptor-ref name="defaultStack">
 	     <param name="exception.logEnabled">true</param>
 	     <param name="exception.logLevel">ERROR</param>
 	    </interceptor-ref>
 	  </interceptor-stack>
-	</interceptors>
+  </interceptors>
  
-    <default-interceptor-ref name="appDefaultStack" />
-    <default-action-ref name="index" />
+  <default-interceptor-ref name="appDefaultStack" />
+  <default-action-ref name="index" />
   
     <global-results>
 	 <result name="error">/Error.jsp</result>
@@ -29,7 +28,7 @@
 	  <exception-mapping exception="java.lang.Exception" result="error" />
 	</global-exception-mappings>
 	
-	<action name="index">
+    <action name="index">
 	  <result name="success">/index.jsp</result>
 	</action>
          
@@ -37,7 +36,8 @@
       <result name="success">/HelloWorld.jsp</result>
     </action>
     
-    <action name="gps" class="org.apache.struts.gps.action.GpsAction" method="gps">
+    <action name="gps" class="org.apache.struts.gps.action.GpsAction" method="execute">
+      <result name="success">/index.jsp</result>
     </action>
     
     <action name="*register" class="org.apache.struts.register.action.RegisterAction" method="{1}">
