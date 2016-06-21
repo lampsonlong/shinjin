@@ -15,6 +15,8 @@ public class Position {
 	private String timezone;
 	
 	private String ip;
+	
+	private double dst;
 
 	public BigDecimal getAccuracy() {
 		return accuracy;
@@ -62,5 +64,13 @@ public class Position {
 
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	public double getDst() {
+		return dst;
+	}
+
+	public void setDst(double dst) {
+		this.dst = dst;
 	}
 }

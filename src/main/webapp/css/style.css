@@ -109,20 +109,32 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 
 body {
 	font: normal 100% Helvetica, Arial, sans-serif;
+	background-color:#DDD;
+	color:#666;
 }
 
 .title {
 	width:100%;
-	font-size: 3.0em;
+	font-size: 4.0em;
 	margin:auto;
+	padding:10%;
 }
 
 .linkbtn {
-	width:10%;
+	width:20%;
 	border:1px solid black;
 	font-size: 2.3em;
 	color:#666;
 	background-color:#DDD;
+	padding:0.5em 0;
+}
+
+.result {
+	width:70%;
+	margin:auto;
+	margin-top:2em;
+	font-size:1.8em;
+	font-align:left;
 }
 
 .linkbtn:hover{

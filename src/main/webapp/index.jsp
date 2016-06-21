@@ -4,7 +4,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Basic Struts 2 Application - Welcome</title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>地域取票系统</title>
 <s:head />
 <script type="text/javascript" src="scripts/json2.js"></script>
 <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
@@ -40,15 +44,23 @@
    
 <a href="#0" class="" onclick="GetGeolocation()">
 <div class="linkbtn">
-	取票
+	取 票
 </div>
 </a>
 
 </s:form>
 </div>
-<!-- 
-<hr />
-<s:text name="contact" />
- -->
+<s:if test="position!=null">
+<div class="result" align="left">
+<ul>
+<li>緯度：<s:property value="position.latitude" /></li>
+<li>経度：<s:property value="position.longitude" /></li>
+<li>取得時刻：<s:property value="position.datetime" /></li>
+<li>Zone：<s:property value="position.timezone" /></li>
+<li>距離：<s:property value="position.dst" /></li>
+<li>IP：<s:property value="position.ip" /></li>
+</s:if>
+<ul>
+</div>
 </body>
 </html>

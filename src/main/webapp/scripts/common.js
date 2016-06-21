@@ -14,7 +14,7 @@ function successCallback(position){
     var coords = position.coords;
 
     d = new Date();
-    var timezone = -d.getTimezoneOffset() / 60; // �A�W�A+08:00��-8�ŕ\��
+    var timezone = -d.getTimezoneOffset() / 60;
     var datetime = new Date(position.timestamp);
 	
 	$("#accuracy").val(coords.accuracy);
