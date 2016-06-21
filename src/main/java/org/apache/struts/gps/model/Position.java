@@ -1,0 +1,66 @@
+package org.apache.struts.gps.model;
+
+import java.math.BigDecimal;
+
+public class Position {
+
+	private BigDecimal accuracy;
+	
+	private double latitude;
+	
+	private double longitude;
+	
+	private String datetime;
+	
+	private String timezone;
+	
+	private String ip;
+
+	public BigDecimal getAccuracy() {
+		return accuracy;
+	}
+
+	public void setAccuracy(BigDecimal accuracy) {
+		this.accuracy = accuracy;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getDatetime() {
+		return datetime;
+	}
+
+	public void setDatetime(String datetime) {
+		this.datetime = datetime;
+	}
+
+	public String getTimezone() {
+		return timezone;
+	}
+
+	public void setTimezone(String timezone) {
+		this.timezone = timezone;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+}
