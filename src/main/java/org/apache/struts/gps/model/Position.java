@@ -12,8 +12,6 @@ public class Position {
 	
 	private String datetime;
 	
-	private String timezone;
-	
 	private String ip;
 	
 	private double dst;
@@ -48,14 +46,6 @@ public class Position {
 
 	public void setDatetime(String datetime) {
 		this.datetime = datetime;
-	}
-
-	public String getTimezone() {
-		return timezone;
-	}
-
-	public void setTimezone(String timezone) {
-		this.timezone = timezone;
 	}
 
 	public String getIp() {

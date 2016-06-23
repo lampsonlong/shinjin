@@ -117,7 +117,7 @@ body {
 	width:100%;
 	font-size: 4.0em;
 	margin:auto;
-	padding:10%;
+	padding:7%;
 }
 
 .linkbtn {
@@ -127,6 +127,19 @@ body {
 	color:#666;
 	background-color:#DDD;
 	padding:0.5em 0;
+}
+
+#map {
+	width:70%;
+  margin:auto;
+}
+
+.search {
+	width:70%;
+  margin:auto;
+  margin-top:2em;
+  font-size:1.8em;
+  font-align:left;
 }
 
 .result {

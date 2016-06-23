@@ -3,6 +3,7 @@ package org.apache.struts.gps.action;
 import java.math.BigDecimal;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.gps.model.Position;
 import org.apache.struts.gps.service.GpsService;
@@ -17,39 +18,61 @@ public class GpsAction extends ActionSupport {
     private static double CURRENT_RANGE = 0.200;
     
     private Position position;
+    
+    private String errMsg;
 	
 	public String execute() throws Exception {
 		HttpServletRequest request = (HttpServletRequest)
 				ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
 		
-		String ip = request.getLocalAddr();
+		HttpSession session = request.getSession();
+		
+		if(session.isNew()){
+			
+		}
+		
 		String ip2 = request.getRemoteAddr();
 		String accuracy = request.getParameter("accuracy");
 		String latitude = request.getParameter("latitude");
 		String longitude = request.getParameter("longitude");
 		String datetime = request.getParameter("datetime");
-		String timezone = request.getParameter("timezone");
+		
+		if(ip2 == null ||
+		    accuracy == null ||
+			latitude == null ||
+			longitude == null ||
+			datetime == null) {
+			errMsg = "Error : Session Timeout! Please Try Again!";
+		}
 		
 		position = new Position();
 		position.setAccuracy(new BigDecimal(accuracy));
 		position.setLatitude(Double.valueOf(latitude).doubleValue());
 		position.setLongitude(Double.valueOf(longitude).doubleValue());
 		position.setDatetime(datetime);
-		position.setTimezone(timezone);
 		position.setIp(ip2);
 		
 		GpsService gpsService = new GpsService();
-		position.setDst(gpsService.geodeticTransform(position));
 		
-		if(position.getDst() <= CURRENT_RANGE){
+		double dst = 0;
+		dst = gpsService.geodeticTransform(position);
+		
+		
+		if(dst == -1){
+			errMsg = "Error : No Master Data! Please Wait A Moment And Try Again!";
+			position = null;
+			return SUCCESS;
+			//return ERROR;
+		} else {
+			if (dst <= CURRENT_RANGE){
+				// ok
+			} else {
+				// out of range
+			}
 			
+			position.setDst(dst);
 		}
 		
-		//response.setHeader("content-type", "text/html;charset=UTF-8");
-		//response.setCharacterEncoding("UTF-8");
-		//PrintWriter out = response.getWriter();
-		//out.write("<meta http-equiv='content-type' content='text/html;charset=UTF-8'/>");
-		//out.write(String.valueOf(dst));
 		return SUCCESS;
 	}
 	
@@ -60,4 +83,12 @@ public class GpsAction extends ActionSupport {
     public void setPosition(Position position) {
         this.position = position;
     }
+
+	public String getErrMsg() {
+		return errMsg;
+	}
+
+	public void setErrMsg(String errMsg) {
+		this.errMsg = errMsg;
+	}
 }

@@ -17,6 +17,6 @@
 	 
 	<h4>Exception Name: <s:property value="exception" /> </h4>
 	 
-	<h4>Exception Details: <s:property value="exceptionStack" /></h4> 
+	<!-- <h4>Exception Details: <s:property value="exceptionStack" /></h4>  -->
   </body>
 </html>

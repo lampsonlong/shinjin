@@ -1,11 +1,14 @@
 package org.apache.struts.gps.service;
 
+import org.apache.struts.gps.model.MasterPoint;
 import org.apache.struts.gps.model.Position;
 import org.apache.struts.gps.util.GeodeticTransformUtil;
 
 public class GpsService {
 	
 	private static double EARTH_RADIUS = 6378.137;
+	
+	public static MasterPoint masterpoint;
 
     private static double rad(double d)
     {
@@ -18,6 +21,13 @@ public class GpsService {
         double mlat = 31.176012;
         double mlon = 121.408798;
         double dst;
+        
+        if (masterpoint != null) {
+        	mlat = masterpoint.getLatitude();
+        	mlon = masterpoint.getLongitude();
+        } else {
+        	return -1;
+        }
         
         plat = pPos.getLatitude();
         plon = pPos.getLongitude();
