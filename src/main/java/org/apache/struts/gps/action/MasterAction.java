@@ -31,7 +31,7 @@ public class MasterAction extends ActionSupport {
 		masterpoint.setLatitude(Double.valueOf(latitude).doubleValue());
 		masterpoint.setLongitude(Double.valueOf(longitude).doubleValue());
 		GpsService.masterpoint = masterpoint;
-		message = "Setting CompleteÅI";
+		message = "Setting Complete !";
 		
 		return SUCCESS;
 	}
