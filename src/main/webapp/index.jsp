@@ -54,6 +54,8 @@
   <s:property value="errMsg" />
 </s:if>
 <s:if test="position!=null">
+<br/>
+<br/>
 	<ul>
 	<li>緯度：<s:property value="position.latitude" /></li>
 	<li>経度：<s:property value="position.longitude" /></li>

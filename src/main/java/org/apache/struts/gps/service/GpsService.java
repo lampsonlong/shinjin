@@ -8,7 +8,9 @@ public class GpsService {
 	
 	private static double EARTH_RADIUS = 6378.137;
 	
-	public static MasterPoint masterpoint;
+	private static MasterPoint masterpoint;
+
+	private static int masterTicket;
 
     private static double rad(double d)
     {
@@ -22,9 +24,9 @@ public class GpsService {
         double mlon = 121.408798;
         double dst;
         
-        if (masterpoint != null) {
-        	mlat = masterpoint.getLatitude();
-        	mlon = masterpoint.getLongitude();
+        if (getMasterpoint() != null) {
+        	mlat = getMasterpoint().getLatitude();
+        	mlon = getMasterpoint().getLongitude();
         } else {
         	return -1;
         }
@@ -57,4 +59,29 @@ public class GpsService {
         s = s / 10000;
         return s;
     }
+
+	public static int getMasterTicket() {
+		return masterTicket;
+	}
+	
+	public static boolean getMasterTicketMinus(){
+		if(masterTicket > 0){
+			masterTicket --;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static void setMasterTicket(int masterTicket) {
+		GpsService.masterTicket = masterTicket;
+	}
+
+	public static MasterPoint getMasterpoint() {
+		return masterpoint;
+	}
+
+	public static void setMasterpoint(MasterPoint masterpoint) {
+		GpsService.masterpoint = masterpoint;
+	}
 }

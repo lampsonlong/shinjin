@@ -13,7 +13,7 @@
 <script type="text/javascript" src="scripts/json2.js"></script>
 <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="scripts/management.js"></script>
-<script src="http://api.map.baidu.com/api?v=2.0&ak=24d29189b1799e5a0f5358961f63616c" type="text/javascript"></script>
+<script src="https://api.map.baidu.com/api?v=2.0&ak=24d29189b1799e5a0f5358961f63616c" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css" /> 
 
 <script>
@@ -26,15 +26,12 @@
 <div class="title" align="center">地域取票系统管理画面</div>
 
 
-<div class="result" align="center">
-<s:if test="message!=null">
-  <s:property value="message" />
-</s:if>
-</div>
+
 <div id="map" align="center" style="width:500px;height:320px"></div>
 
 <div class="search" align="center">
-目的地座標検索：<input type="text" size="32" style="font-size:1.2em;" onblur="localSearch(this.value)" />
+目的地名検索：<input type="text" size="32" style="font-size:1.2em;" onblur="localSearch(this.value)" /><br/>
+發票数　（枚） ：<input type="text" id="tnum" size="32" maxlength="5" style="font-size:1.2em;" />
 </div>
 <br/>
 <br/>
@@ -42,6 +39,7 @@
 <s:form id="form" method="post" action='master'>
    <s:hidden id="latitude" name="latitude"></s:hidden>
    <s:hidden id="longitude" name="longitude"></s:hidden>
+   <s:hidden id="ticketnumber" name="ticketnumber"></s:hidden>
 <a href="#0" class="" onclick="setMasterPoint()">
 <div class="linkbtn">目的地座標設定</div>
 </a>

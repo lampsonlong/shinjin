@@ -68,11 +68,34 @@ function localSearch(dest){
 }
 
 function setMasterPoint(){
+	var tnum = document.getElementById("tnum");
+	if(!checkNum(tnum)){
+		return false;
+	}
+	
 	if(point != null && point != undefined){
 		$("#latitude").val(point.lat);
 		$("#longitude").val(point.lng);
 		$("#form").submit();
 	} else {
-		alert("地図に目的地フラグを立ってください。")
+		alert("Please set destination on the map.")
 	}
 }
+
+function checkNum(obj){
+	if(isNaN(obj.value)){
+		alert("Please input number."); 
+		obj.focus();
+		return false;
+	} else {
+		$("#ticketnumber").val(obj.value);
+		return true;
+	}
+}
+
+$(document).keypress(function(e) {  
+// Enter key
+   if(e.which == 13) {
+	   setMasterPoint();
+   }  
+}); 

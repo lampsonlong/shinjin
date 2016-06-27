@@ -42,9 +42,19 @@
       <result name="success">/index.jsp</result>
     </action>
     
+    <action name="mlogin" class="org.apache.struts.gps.action.MLoginAction" method="execute">
+      <result name="success">/management.jsp</result>
+      <result name="failed">/mlogin.jsp</result>
+    </action>
+    
     <action name="master" class="org.apache.struts.gps.action.MasterAction" method="execute">
       <interceptor-ref name="sessionFilter" />
-      <result name="success">/management.jsp</result>
+      <result name="success">/mview.jsp</result>
+    </action>
+    
+    <action name="ticket" class="org.apache.struts.gps.action.MasterAction" method="ticket">
+      <interceptor-ref name="sessionFilter" />
+      <result name="success">/mview.jsp</result>
     </action>
     
     <action name="*register" class="org.apache.struts.register.action.RegisterAction" method="{1}">

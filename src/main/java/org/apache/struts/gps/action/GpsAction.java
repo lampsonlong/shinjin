@@ -1,6 +1,8 @@
 package org.apache.struts.gps.action;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +17,9 @@ public class GpsAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	
-    private static double CURRENT_RANGE = 0.200;
+    private static double CURRENT_RANGE = 0.500;
+    
+    private static List<String> ticketIpList;
     
     private Position position;
     
@@ -26,10 +30,6 @@ public class GpsAction extends ActionSupport {
 				ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
 		
 		HttpSession session = request.getSession();
-		
-		if(session.isNew()){
-			
-		}
 		
 		String ip2 = request.getRemoteAddr();
 		String accuracy = request.getParameter("accuracy");
@@ -61,12 +61,31 @@ public class GpsAction extends ActionSupport {
 		if(dst == -1){
 			errMsg = "Error : No Master Data! Please Wait A Moment And Try Again!";
 			position = null;
-			return SUCCESS;
-			//return ERROR;
 		} else {
 			if (dst <= CURRENT_RANGE){
-				// ok
+				List<String> tIpList = getTicketIpList();
+				if(tIpList == null){
+					tIpList = new ArrayList<String>();
+				}
+				if(tIpList.size() > 0 && tIpList.contains(ip2)){
+					// have already got
+					position.setDst(dst);
+					errMsg = "Sorry, You Have Already Got The Ticket!";
+					return SUCCESS;
+				}
+				
+				// check OK
+				boolean hasTicket = GpsService.getMasterTicketMinus();
+				if(hasTicket){
+					errMsg = "Congratulations! You Get The Ticket!";
+					tIpList.add(ip2);
+					setTicketIpList(tIpList);
+				} else {
+					errMsg = "Sorry, No Ticket!";
+				}
+				
 			} else {
+				errMsg = "Out Of Range!";
 				// out of range
 			}
 			
@@ -90,5 +109,13 @@ public class GpsAction extends ActionSupport {
 
 	public void setErrMsg(String errMsg) {
 		this.errMsg = errMsg;
+	}
+
+	public static List<String> getTicketIpList() {
+		return ticketIpList;
+	}
+
+	public static void setTicketIpList(List<String> ticketIpList) {
+		GpsAction.ticketIpList = ticketIpList;
 	}
 }
