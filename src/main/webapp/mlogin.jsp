@@ -22,7 +22,7 @@
 <div class="title" align="center">地域取票系统管理登録画面</div>
 
 <div class="search" align="center">
-<s:textfield id="password" label="Password" name="password" size="20" style="font-size:1.0em;"/>
+Password：<input type="text" id="password" size="20" style="font-size:1.0em;"/>
 </div>
 <div class="result" align="center">
 	<s:if test="errMsg!=null">
