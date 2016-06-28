@@ -10,7 +10,7 @@
 <meta name="format-detection" content="telephone=no">
 <title>区域内优惠券发行终端</title>
 
-<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=24d29189b1799e5a0f5358961f63616c" ></script>
+<script type="text/javascript" src="https://api.map.baidu.com/getscript?v=2.0&ak=24d29189b1799e5a0f5358961f63616c&services=&t=20160627141851" ></script>
 <script type="text/javascript" src="scripts/json2.js"></script>
 <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="scripts/management.js"></script>
