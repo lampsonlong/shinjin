@@ -5,6 +5,10 @@ public class MasterPoint {
 	private double latitude;
 	
 	private double longitude;
+	
+	private double radius;
+	
+	private int ticket;
 
 	public double getLatitude() {
 		return latitude;
@@ -20,5 +24,21 @@ public class MasterPoint {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	public double getRadius() {
+		return radius;
+	}
+
+	public void setRadius(double radius) {
+		this.radius = radius;
+	}
+
+	public int getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(int ticket) {
+		this.ticket = ticket;
 	}
 }

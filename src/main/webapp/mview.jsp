@@ -24,27 +24,46 @@
 <body>
 
 
-	<div class="title" align="center">地域取票系统管理一覧画面</div>
+<div class="title" align="center">
+<h1>区域内优惠券发行终端</h1>
+<h2>—— 一览画面</h2>
+</div>
 
 
-	<div class="result" align="center">
-		残票数：
-		<s:property value="ticket" />枚
-		<br /> 緯度：
-		<s:property value="masterpoint.latitude" />
-		<br /> 経度：
-		<s:property value="masterpoint.longitude" />
-		<br />
-	</div>
+<div class="result" align="center">
+<table class="iplist">
+  <thead>
+    <tr>
+	    <th>已获得优惠券IP</th>
+	    <th>获得时间</th>
+    </tr>
+  </thead>
+  <s:iterator value="ipMap" id="column">
+  <tr>
+    <td><s:property value="value.ip"/></td>
+    <td><s:property value="value.datetime"/></td>
+  </tr>
+  </s:iterator>
+</table>
+	剩余优惠券：<s:property value="masterpoint.ticket" />张
+</div>
 
-	<div align="center">
-		<s:form id="form" method="post" action='ticket'>
-			<a href="#0" class="" onclick="Refresh()">
-				<div class="linkbtn">刷新票数<div>
-			</a>
-
-		</s:form>
-	</div>
+<div align="center">
+	<s:form id="form" method="post" action='mview'>
+	</s:form>
+</div>
+	
+<div class="buttonbar" align="center">
+  <div class="button">
+    <s:url action="mview" var="mview"></s:url>
+    <a href="${mview}">刷 新</a>
+  </div>
+  
+  <div class="button">
+    <s:url action="mview2master" var="master"></s:url>
+    <a href="${master}">修 改</a>
+  </div>
+</div>
 
 </body>
 </html>

@@ -12,16 +12,10 @@ function GetGeolocation(){
 
 function successCallback(position){
     var coords = position.coords;
-
-    d = new Date();
-    var timezone = -d.getTimezoneOffset() / 60;
-    var datetime = new Date(position.timestamp);
 	
 	$("#accuracy").val(coords.accuracy);
 	$("#latitude").val(coords.latitude);
 	$("#longitude").val(coords.longitude);
-	$("#datetime").val(datetime);
-	$("#timezone").val(timezone);
 	
 	$("#form1").submit();
 }

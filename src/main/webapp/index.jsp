@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <title>地域取票系统</title>
-<s:head />
+
 <script type="text/javascript" src="scripts/json2.js"></script>
 <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="scripts/common.js"></script>
@@ -33,21 +33,25 @@
 </s:form>
  -->
 
-<div class="title" align="center">地域取票系统</div>
+<div class="title" align="center">
+<h1>区域内优惠券取得终端</h1>
+</div>
+
 <div align="center">
 <s:form id="form1" method="post" action='gps'>
-   <s:hidden id="accuracy" name="accuracy"></s:hidden>
-   <s:hidden id="latitude" name="latitude"></s:hidden>
-   <s:hidden id="longitude" name="longitude"></s:hidden>
-   <s:hidden id="datetime" name="datetime"></s:hidden>
-   <s:hidden id="timezone" name="timezone"></s:hidden>
-   
-<a href="#0" class="" onclick="GetGeolocation()">
-<div class="linkbtn">取 票</div>
-</a>
-
+   <s:hidden id="accuracy" name="position.accuracy"></s:hidden>
+   <s:hidden id="latitude" name="position.latitude"></s:hidden>
+   <s:hidden id="longitude" name="position.longitude"></s:hidden>
 </s:form>
 </div>
+
+<s:if test="position==null">
+<div class="buttonbar" align="center">
+  <div class="button">
+    <a href="javascript:void(0);" onclick="GetGeolocation()">取 票</a>
+  </div>
+</div>
+</s:if>
 
 <div class="result" align="left">
 <s:if test="errMsg!=null">
@@ -57,14 +61,12 @@
 <br/>
 <br/>
 	<ul>
-	<li>緯度：<s:property value="position.latitude" /></li>
-	<li>経度：<s:property value="position.longitude" /></li>
+	<li>优惠码：<s:property value="position.kbcode" /></li>
 	<li>取得時刻：<s:property value="position.datetime" /></li>
-	<li>Zone：<s:property value="position.timezone" /></li>
 	<li>距離：<s:property value="position.dst" /></li>
-	<li>IP：<s:property value="position.ip" /></li>
 	</ul>
 </s:if>
 </div>
+
 </body>
 </html>

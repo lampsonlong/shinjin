@@ -9,7 +9,6 @@
  
   <package name="basicstruts2" extends="struts-default">
   <interceptors>
-      <interceptor name="sessionFilter" class="org.apache.struts.common.SessionFilterInterceptor" /> 
 	  <interceptor-stack name="appDefaultStack">
 	    <interceptor-ref name="defaultStack">
 	     <param name="exception.logEnabled">true</param>
@@ -24,13 +23,14 @@
   
     <global-results>
 	 <result name="error">/Error.jsp</result>
+	 <result name="mlogin">/mlogin.jsp</result>
 	</global-results>
  
 	<global-exception-mappings>
 	  <exception-mapping exception="java.lang.Exception" result="error" />
 	</global-exception-mappings>
 	
-    <action name="index">
+  <action name="index">
 	  <result name="success">/index.jsp</result>
 	</action>
          
@@ -48,13 +48,16 @@
     </action>
     
     <action name="master" class="org.apache.struts.gps.action.MasterAction" method="execute">
-      <interceptor-ref name="sessionFilter" />
-      <result name="success">/mview.jsp</result>
+      <result name="success">/management.jsp</result>
     </action>
     
-    <action name="ticket" class="org.apache.struts.gps.action.MasterAction" method="ticket">
-      <interceptor-ref name="sessionFilter" />
+    <action name="mview" class="org.apache.struts.gps.action.MasterAction" method="mview">
       <result name="success">/mview.jsp</result>
+      <result name="master">/management.jsp</result>
+    </action>
+    
+    <action name="mview2master" class="org.apache.struts.gps.action.MasterAction" method="mview2master">
+      <result name="success">/management.jsp</result>
     </action>
     
     <action name="*register" class="org.apache.struts.register.action.RegisterAction" method="{1}">

@@ -1,10 +1,15 @@
 package org.apache.struts.gps.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts.common.util.CommonUtil;
+import org.apache.struts.gps.constant.GpsConstant;
 import org.apache.struts.gps.model.MasterPoint;
-import org.apache.struts.gps.service.GpsService;
+import org.apache.struts.gps.model.Position;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -15,49 +20,66 @@ public class MasterAction extends ActionSupport {
 	
 	private MasterPoint masterpoint;
 	
-	private int ticket;
-	
 	private String message;
+	
+	private Map<String, Position> ipMap;
 	
 	public String execute() throws Exception {
 		HttpServletRequest request = (HttpServletRequest)
 				ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
 		
+		CommonUtil util = new CommonUtil();
 		HttpSession session = request.getSession();
 		
-		String latitude = request.getParameter("latitude");
-		String longitude = request.getParameter("longitude");
-		String ticketnumber = request.getParameter("ticketnumber");
+		String latitude = request.getParameter("masterpoint.latitude");
+		String longitude = request.getParameter("masterpoint.longitude");
+		String ticketnumber = request.getParameter("masterpoint.ticket");
+		String radius = request.getParameter("masterpoint.radius");
 		
-		if(latitude == null || 
-			longitude == null || 
-			ticketnumber == null) {
-			return ERROR;
+		if(util.isNullOrEmpty(latitude)
+				|| util.isNullOrEmpty(longitude) 
+				|| util.isNullOrEmpty(ticketnumber)
+				|| util.isNullOrEmpty(radius)) {
+			return "mlogin";
 		}
 		
 		masterpoint = new MasterPoint();
 		masterpoint.setLatitude(Double.valueOf(latitude).doubleValue());
 		masterpoint.setLongitude(Double.valueOf(longitude).doubleValue());
-		setMessage("Setting Complete !");
-		setTicket(Integer.parseInt(ticketnumber));
-		GpsService.setMasterpoint(masterpoint);
-		GpsService.setMasterTicket(getTicket());
+		masterpoint.setTicket(Integer.parseInt(ticketnumber));
+		masterpoint.setRadius(Double.valueOf(radius).doubleValue());
+		
+		GpsConstant.setMasterPoint(masterpoint);
 		session.setAttribute("setMaster", "OK");
+		setMessage("Setting Complete !");
+		// reset ipList
+		GpsConstant.setTicketIpList(null);
 		
 		return SUCCESS;
 	}
 	
-	public String ticket() throws Exception {
-		HttpServletRequest request = (HttpServletRequest)
-				ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
-		
+	public String mview() throws Exception {
 		masterpoint = new MasterPoint();
-		setMasterpoint(GpsService.getMasterpoint());
+		setIpMap(new HashMap<String, Position>());
 		
-		setTicket(GpsService.getMasterTicket());
+		setIpMap(GpsConstant.getTicketIpList());
+		setMasterpoint(GpsConstant.getMasterPoint());
+		
+		if(masterpoint == null){
+			return "master";
+		}
 		
 		return SUCCESS;
 	}
+	
+	public String mview2master() throws Exception {
+		masterpoint = new MasterPoint();
+		
+		setMasterpoint(GpsConstant.getMasterPoint());
+		
+		return SUCCESS;
+	}
+
 
 	public MasterPoint getMasterpoint() {
 		return masterpoint;
@@ -75,11 +97,11 @@ public class MasterAction extends ActionSupport {
 		this.message = message;
 	}
 
-	public int getTicket() {
-		return ticket;
+	public Map<String, Position> getIpMap() {
+		return ipMap;
 	}
 
-	public void setTicket(int ticket) {
-		this.ticket = ticket;
+	public void setIpMap(Map<String, Position> ipMap) {
+		this.ipMap = ipMap;
 	}
 }

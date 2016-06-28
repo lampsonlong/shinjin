@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<title>地域取票系统管理登録画面</title>
+<title>区域内优惠券发行终端</title>
 <s:head />
 <script type="text/javascript" src="scripts/json2.js"></script>
 <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
@@ -19,28 +19,31 @@
 <body>
 
 
-<div class="title" align="center">地域取票系统管理登録画面</div>
+<div class="title" align="center">
+<h1>区域内优惠券发行终端</h1>
+<h2>——登陆画面</h2>
+</div>
 
 <div class="search" align="center">
-Password：<input type="text" id="password" size="20" style="font-size:1.0em;"/>
-</div>
-<div class="result" align="center">
-	<s:if test="errMsg!=null">
-	  <s:property value="errMsg" />
-	</s:if>
+Password：<input type="password" id="password" size="20" style="font-size:1.0em;"/><br/>
+ <s:if test="errMsg!=null">
+   <b class="inputErr">无效的密码！</b>
+ </s:if>
 </div>
 <br/>
 <br/>
 <div align="center">
 <s:form id="form" method="post" action='mlogin'>
   <s:hidden id="hidpwd" name="hidpwd"></s:hidden>
-  <a href="#0" class="" onclick="MLogin()">
-	 <div class="linkbtn">登録</div>
-	</a>
 </s:form>
 </div>
 
-
+  
+<div class="buttonbar" align="center">
+  <div class="button">
+    <a href="javascript:void(0);" onclick="MLogin()">登 録</a>
+  </div>
+</div>
 
 
 </body>

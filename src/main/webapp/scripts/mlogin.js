@@ -1,3 +1,7 @@
+$(document).ready(function(){
+	$("#password").focus();
+})
+
 function MLogin(){
 	var pwd = $("#password").val();
 	$("#hidpwd").val(pwd);
@@ -8,5 +12,5 @@ $(document).keypress(function(e) {
 // Enter key
    if(e.which == 13) {
 	   MLogin();
-   }  
-}); 
+   }
+});

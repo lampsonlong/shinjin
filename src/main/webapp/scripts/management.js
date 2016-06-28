@@ -13,8 +13,45 @@ $(function() {
 		initMap();
 	}*/
 	
-	initMap();
+	var lat = $("#latitude").val();
+	var lng = $("#longitude").val();
+	var tn = $("#ticket").val();
+	var rad = $("#radius").val();
+	
+	if(lat != ""
+		&& lng != ""
+		&& tn != ""
+		&& rad != ""){
+		reloadMap(lng, lat, tn, rad);
+	} else {
+		initMap();
+	}
 });
+
+function reloadMap(lng, lat, tn, rad){
+	map = new BMap.Map('map');
+	point = new BMap.Point(lng, lat);
+	marker = new BMap.Marker(point);
+	
+	map.centerAndZoom(point, 19);
+	map.enableScrollWheelZoom();
+	map.addControl(new BMap.NavigationControl());
+	map.addControl(new BMap.NavigationControl());
+	map.addControl(new BMap.ScaleControl());
+	map.addControl(new BMap.OverviewMapControl());
+	map.addControl(new BMap.MapTypeControl());
+	
+	marker.enableDragging();
+	marker.addEventListener("dragend", function(e){
+		point = e.point;
+	});
+	map.addOverlay(marker);
+	
+	$("#rad").val(rad);
+	$("#tnum").val(tn);
+	
+	$("#viewDisplay").css("display","inline");
+}
 
 function initMap(){
 	map = new BMap.Map('map');
@@ -32,7 +69,6 @@ function initMap(){
 	marker.enableDragging();
 	marker.addEventListener("dragend", function(e){
 		point = e.point;
-		//alert("当前位置：" + point.lng + ", " + point.lat);
 	});
 	map.addOverlay(marker);
 }
@@ -58,9 +94,11 @@ function setPoint(p){
 	map.addOverlay(marker);
 }
 
-function localSearch(dest){
+function localSearch(){
+	var area = $("#area").val();
+	
 	var myGeo = new BMap.Geocoder();
-	myGeo.getPoint(dest, function(p){
+	myGeo.getPoint(area, function(p){
 		if (p) {
 			setPoint(p);
 		}
@@ -68,9 +106,25 @@ function localSearch(dest){
 }
 
 function setMasterPoint(){
+	var checkErr = false;
 	var tnum = document.getElementById("tnum");
 	if(!checkNum(tnum)){
+		checkErr = true;
+	} else {
+		$("#ticket").val(tnum.value);
+	}
+	
+	var radius = document.getElementById("rad");
+	if(!checkNum(radius)){
+		checkErr = true;
+	} else {
+		$("#radius").val(radius.value);
+	}
+	
+	if(checkErr){
 		return false;
+	} else {
+		
 	}
 	
 	if(point != null && point != undefined){
@@ -83,12 +137,13 @@ function setMasterPoint(){
 }
 
 function checkNum(obj){
-	if(isNaN(obj.value)){
-		alert("Please input number."); 
+	var inputErr = $("#"+obj.id + "Err");
+	if(isNaN(obj.value) || obj.value == ""){
+		inputErr.text("请输入数字");
 		obj.focus();
 		return false;
 	} else {
-		$("#ticketnumber").val(obj.value);
+		inputErr.text("");
 		return true;
 	}
 }

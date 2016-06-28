@@ -1,5 +1,6 @@
 package org.apache.struts.gps.service;
 
+import org.apache.struts.gps.constant.GpsConstant;
 import org.apache.struts.gps.model.MasterPoint;
 import org.apache.struts.gps.model.Position;
 import org.apache.struts.gps.util.GeodeticTransformUtil;
@@ -7,12 +8,8 @@ import org.apache.struts.gps.util.GeodeticTransformUtil;
 public class GpsService {
 	
 	private static double EARTH_RADIUS = 6378.137;
-	
-	private static MasterPoint masterpoint;
 
-	private static int masterTicket;
-
-    private static double rad(double d)
+    private double rad(double d)
     {
         return d * Math.PI / 180.0;
     }
@@ -24,9 +21,11 @@ public class GpsService {
         double mlon = 121.408798;
         double dst;
         
-        if (getMasterpoint() != null) {
-        	mlat = getMasterpoint().getLatitude();
-        	mlon = getMasterpoint().getLongitude();
+        MasterPoint mp = GpsConstant.getMasterPoint();
+        
+        if (mp != null) {
+        	mlat = mp.getLatitude();
+        	mlon = mp.getLongitude();
         } else {
         	return -1;
         }
@@ -45,7 +44,7 @@ public class GpsService {
         return dst;
 	}
 	
-	public static double GetDistance(double lat1, double lng1, double lat2, double lng2)
+	private double GetDistance(double lat1, double lng1, double lat2, double lng2)
     {
         double radLat1 = rad(lat1);
         double radLat2 = rad(lat2);
@@ -60,28 +59,4 @@ public class GpsService {
         return s;
     }
 
-	public static int getMasterTicket() {
-		return masterTicket;
-	}
-	
-	public static boolean getMasterTicketMinus(){
-		if(masterTicket > 0){
-			masterTicket --;
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public static void setMasterTicket(int masterTicket) {
-		GpsService.masterTicket = masterTicket;
-	}
-
-	public static MasterPoint getMasterpoint() {
-		return masterpoint;
-	}
-
-	public static void setMasterpoint(MasterPoint masterpoint) {
-		GpsService.masterpoint = masterpoint;
-	}
 }

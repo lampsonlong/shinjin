@@ -1,12 +1,13 @@
 package org.apache.struts.gps.action;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+import org.apache.struts.common.util.CommonUtil;
+import org.apache.struts.gps.constant.GpsConstant;
 import org.apache.struts.gps.model.Position;
 import org.apache.struts.gps.service.GpsService;
 
@@ -16,10 +17,6 @@ import com.opensymphony.xwork2.ActionSupport;
 public class GpsAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	
-    private static double CURRENT_RANGE = 0.500;
-    
-    private static List<String> ticketIpList;
     
     private Position position;
     
@@ -29,71 +26,93 @@ public class GpsAction extends ActionSupport {
 		HttpServletRequest request = (HttpServletRequest)
 				ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
 		
-		HttpSession session = request.getSession();
+		CommonUtil util = new CommonUtil();
 		
-		String ip2 = request.getRemoteAddr();
-		String accuracy = request.getParameter("accuracy");
-		String latitude = request.getParameter("latitude");
-		String longitude = request.getParameter("longitude");
-		String datetime = request.getParameter("datetime");
+		String ip = request.getRemoteAddr();
+		String accuracy = request.getParameter("position.accuracy");
+		String latitude = request.getParameter("position.latitude");
+		String longitude = request.getParameter("position.longitude");
+		String nowtime = util.getNow();
 		
-		if(ip2 == null ||
-		    accuracy == null ||
-			latitude == null ||
-			longitude == null ||
-			datetime == null) {
-			errMsg = "Error : Session Timeout! Please Try Again!";
+		Map<String, Position> ipList = GpsConstant.getTicketIpList();
+		if (ipList != null) {
+			if(ipList.size() > 0 && ipList.containsKey(ip)){
+				position = new Position();
+				setPosition(ipList.get(ip));
+				errMsg = "You Got The Ticket!";
+				return SUCCESS;
+			}
 		}
 		
-		position = new Position();
-		position.setAccuracy(new BigDecimal(accuracy));
-		position.setLatitude(Double.valueOf(latitude).doubleValue());
-		position.setLongitude(Double.valueOf(longitude).doubleValue());
-		position.setDatetime(datetime);
-		position.setIp(ip2);
-		
-		GpsService gpsService = new GpsService();
-		
-		double dst = 0;
-		dst = gpsService.geodeticTransform(position);
-		
-		
-		if(dst == -1){
-			errMsg = "Error : No Master Data! Please Wait A Moment And Try Again!";
-			position = null;
+		if (accuracy == null ||
+				latitude == null ||
+				longitude == null) {
+			return SUCCESS;
 		} else {
-			if (dst <= CURRENT_RANGE){
-				List<String> tIpList = getTicketIpList();
-				if(tIpList == null){
-					tIpList = new ArrayList<String>();
-				}
-				if(tIpList.size() > 0 && tIpList.contains(ip2)){
-					// have already got
-					position.setDst(dst);
-					errMsg = "Sorry, You Have Already Got The Ticket!";
-					return SUCCESS;
-				}
-				
-				// check OK
-				boolean hasTicket = GpsService.getMasterTicketMinus();
-				if(hasTicket){
-					errMsg = "Congratulations! You Get The Ticket!";
-					tIpList.add(ip2);
-					setTicketIpList(tIpList);
-				} else {
-					errMsg = "Sorry, No Ticket!";
-				}
-				
+			position = new Position();
+			position.setAccuracy(new BigDecimal(accuracy));
+			position.setLatitude(Double.valueOf(latitude).doubleValue());
+			position.setLongitude(Double.valueOf(longitude).doubleValue());
+			position.setDatetime(nowtime);
+			position.setIp(ip);
+			
+			GpsService gpsService = new GpsService();
+			
+			double dst = 0;
+			dst = gpsService.geodeticTransform(position);
+			
+			
+			if(dst == -1){
+				errMsg = "Error : No Master Data! Please Wait A Moment And Try Again!";
+				position = null;
 			} else {
-				errMsg = "Out Of Range!";
-				// out of range
+				if (dst <= GpsConstant.getMasterPoint().getRadius()/1000){
+					Map<String, Position> tIpList = GpsConstant.getTicketIpList();
+					if(tIpList == null){
+						tIpList = new HashMap<String,Position>();
+					}
+					
+					// check OK
+					String kbcode = GpsConstant.getMasterTicketMinus(nowtime);
+					
+					if(kbcode != null){
+						position.setKbcode(kbcode);
+						errMsg = "Congratulations! You Get The Ticket!";
+						tIpList.put(ip, position);
+						GpsConstant.setTicketIpList(tIpList);
+					} else {
+						errMsg = "Sorry, No Ticket!";
+					}
+					
+				} else {
+					errMsg = "Out Of Range!";
+					// out of range
+				}
+				
+				position.setDst(dst);
 			}
 			
-			position.setDst(dst);
+			return SUCCESS;
 		}
-		
-		return SUCCESS;
 	}
+	
+    
+    public String init() throws Exception {
+    	HttpServletRequest request = (HttpServletRequest)
+				ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
+    	
+    	String ip = request.getRemoteAddr();
+    	position = new Position();
+    	
+    	Map<String, Position> tIpList = GpsConstant.getTicketIpList();
+		if(tIpList != null){
+			if(tIpList.size() > 0 && tIpList.containsKey(ip)){
+				setPosition(tIpList.get(ip));
+			}
+		}
+    	
+    	return SUCCESS;
+    }
 	
     public Position getPosition() {
         return position;
@@ -109,13 +128,5 @@ public class GpsAction extends ActionSupport {
 
 	public void setErrMsg(String errMsg) {
 		this.errMsg = errMsg;
-	}
-
-	public static List<String> getTicketIpList() {
-		return ticketIpList;
-	}
-
-	public static void setTicketIpList(List<String> ticketIpList) {
-		GpsAction.ticketIpList = ticketIpList;
 	}
 }

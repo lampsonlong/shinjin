@@ -115,9 +115,15 @@ body {
 
 .title {
 	width:100%;
-	font-size: 4.0em;
 	margin:auto;
-	padding:7%;
+}
+
+h1 {
+	font-size:4.0em;
+}
+
+h2 {
+	font-size:3.0em;
 }
 
 .linkbtn {
@@ -131,6 +137,7 @@ body {
 
 #map {
 	width:70%;
+	height:50%;
   margin:auto;
 }
 
@@ -154,4 +161,39 @@ body {
 	font-size: 2.3em;
 	color:#DDD;
 	background-color:#666;
+}
+
+.search input{
+	margin-top:5px;
+}
+
+.inputErr {
+	color:red;
+}
+
+.buttonbar {
+	margin-top:2em;
+}
+
+.button a{
+	font-size:2.3em;
+	color:#666;
+	background-color:#DDD;
+	margin:0 0.5em;
+	padding:0.5em 3.0em; 
+	border:1px solid black;
+}
+
+.button a:hover{
+  color:#DDD;
+  background-color:#666;
+}
+
+.button {
+	display:inline;
+}
+
+.iplist tr td {
+	border:1px solid black;
+	padding:0.5em;
 }

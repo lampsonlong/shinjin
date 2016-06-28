@@ -15,6 +15,8 @@ public class Position {
 	private String ip;
 	
 	private double dst;
+	
+	private String kbcode;
 
 	public BigDecimal getAccuracy() {
 		return accuracy;
@@ -63,4 +65,13 @@ public class Position {
 	public void setDst(double dst) {
 		this.dst = dst;
 	}
+
+	public String getKbcode() {
+		return kbcode;
+	}
+
+	public void setKbcode(String kbcode) {
+		this.kbcode = kbcode;
+	}
+
 }
