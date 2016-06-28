@@ -63,7 +63,7 @@ public class MyFilter implements Filter {
         	response.setContentType("text/html;charset=utf-8");  
             PrintWriter out = response.getWriter();  
             out.println("<script language='javascript' type='text/javascript'>");  
-            out.println("window.location.href='" + request.getContextPath() + "/'");  
+            out.println("window.location.href='" + request.getContextPath() + "/index.jsp'");  
             out.println("</script>");  
         } else if(toMLogin){
         	response.setContentType("text/html;charset=utf-8");  
