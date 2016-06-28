@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <title>区域内优惠券发行终端</title>
-<s:head />
+
 <script type="text/javascript" src="scripts/json2.js"></script>
 <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="scripts/mlogin.js"></script>
