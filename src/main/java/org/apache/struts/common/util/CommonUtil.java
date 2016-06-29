@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Stack;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts.gps.constant.GpsConstant;
@@ -47,24 +48,37 @@ public class CommonUtil {
 		return time;
 	}
 	
-	public static String base10to62(long number, int length){  
-        Long rest=number;  
-        Stack<Character> stack=new Stack<Character>();  
-        StringBuilder result=new StringBuilder(0);  
-        while(rest!=0){  
-            stack.add(charSet[new Long((rest-(rest/62)*62)).intValue()]);  
-            rest=rest/62;  
-        }  
-        for(;!stack.isEmpty();){  
-            result.append(stack.pop());  
-        }  
-        int result_length = result.length();  
-        StringBuilder temp0 = new StringBuilder();  
-        for(int i = 0; i < length - result_length; i++){  
+	public static String base10to62(long number, int length){
+        Long rest=number;
+        Stack<Character> stack=new Stack<Character>();
+        StringBuilder result=new StringBuilder(0);
+        while(rest!=0){
+            stack.add(charSet[new Long((rest-(rest/62)*62)).intValue()]);
+            rest=rest/62;
+        }
+        for(;!stack.isEmpty();){
+            result.append(stack.pop());
+        }
+        int result_length = result.length();
+        StringBuilder temp0 = new StringBuilder();
+        for(int i = 0; i < length - result_length; i++){
             temp0.append('0');  
-        }  
-          
-        return temp0.toString() + result.toString();  
- 
-   }
+        }
+        
+        return temp0.toString() + result.toString();
+    }
+	
+	public  String getIpAddr(HttpServletRequest request)  {
+	  String ip  =  request.getHeader("x-forwarded-for");
+	  if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+	      ip  =  request.getHeader("Proxy-Client-IP ");
+	  }   
+	  if (ip == null || ip.length() == 0 || "unknown ".equalsIgnoreCase(ip)) {
+	      ip  =  request.getHeader("WL-Proxy-Client-IP");
+	  }   
+	  if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+	     ip  =  request.getRemoteAddr();
+	  }   
+	  return  ip;
+    }  
 }

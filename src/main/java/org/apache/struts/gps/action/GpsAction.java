@@ -28,7 +28,7 @@ public class GpsAction extends ActionSupport {
 		
 		CommonUtil util = new CommonUtil();
 		
-		String ip = request.getRemoteAddr();
+		String ip = util.getIpAddr(request);
 		String accuracy = request.getParameter("position.accuracy");
 		String latitude = request.getParameter("position.latitude");
 		String longitude = request.getParameter("position.longitude");
