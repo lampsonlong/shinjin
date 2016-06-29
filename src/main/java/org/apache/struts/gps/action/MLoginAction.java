@@ -31,6 +31,7 @@ public class MLoginAction extends ActionSupport {
 		
 		if(password == null || !GpsConstant.getPwd().equals(password)) {
 			if(util.isLogin(session)){
+				masterpoint = GpsConstant.getMasterPoint();
 				return SUCCESS;
 			} else{
 				setErrMsg("Password Invalid !");
