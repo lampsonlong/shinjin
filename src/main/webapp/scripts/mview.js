@@ -5,6 +5,7 @@ function Refresh(){
 $(document).keypress(function(e) {  
 // Enter key
    if(e.which == 13) {
+	   e.preventDefault();
 	   Refresh();
    }  
 });
