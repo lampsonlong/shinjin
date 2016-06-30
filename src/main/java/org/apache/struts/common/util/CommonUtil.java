@@ -44,11 +44,11 @@ public class CommonUtil {
 	public String getNow(String fmt){
 		// get now time
 		Calendar calendar = Calendar.getInstance();
-		TimeZone tz = TimeZone.getDefault();
-		tz.setRawOffset(28800000);
-		calendar.setTimeZone(tz);
-		Date date = calendar.getTime();
+		int tzLocal = calendar.getTimeZone().getRawOffset();
+		int tzShanghai = TimeZone.getTimeZone("Asia/Shanghai").getRawOffset();
+		calendar.add(Calendar.MILLISECOND, -tzLocal + tzShanghai);
 		
+		Date date = calendar.getTime();
 		DateFormat format = new SimpleDateFormat(fmt);
 		String time = format.format(date);
 		
