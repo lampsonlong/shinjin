@@ -1,5 +1,8 @@
 $(document).ready(function(){
 	$("#password").focus();
+	if($("#hidErrMsg").val() != ""){
+		$("#pwdInput").addClass("has-error");
+	}
 })
 
 function MLogin(){

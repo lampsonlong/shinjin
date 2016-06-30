@@ -3,19 +3,12 @@ var point;
 var marker;
 
 $(function() {
-	/*var lat = $("#latitude").val();
-	var lng = $("#longitude").val();
-	
-	if(lat != "" && lng != ""){
-		var reloadPoint = new BMap.Point(lat, lng);
-		setPoint(reloadPoint);
-	} else {
-		initMap();
-	}*/
+	// set map height by orientation
+	setBMapHeight();
 	
 	var lat = $("#latitude").val();
 	var lng = $("#longitude").val();
-	var tn = $("#ticket").val();
+	var tn = $("#allticket").val();
 	var rad = $("#radius").val();
 	
 	if(lat != ""
@@ -27,6 +20,17 @@ $(function() {
 		initMap();
 	}
 });
+
+function setBMapHeight(){
+	var devWidth = window.screen.width;
+	var devHeight = window.screen.height;
+	var bzHeight = devHeight;
+
+	if(window.orientation == 90 || window.orientation == -90){
+		bzHeight = devWidth;
+	}
+	$("#map").css("height",bzHeight-480 + "px");
+}
 
 function reloadMap(lng, lat, tn, rad){
 	map = new BMap.Map('map');
