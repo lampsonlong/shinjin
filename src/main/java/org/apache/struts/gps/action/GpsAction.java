@@ -86,6 +86,7 @@ public class GpsAction extends ActionSupport {
 					}
 					
 				} else {
+					dst = dst - GpsConstant.getMasterPoint().getRadius()/1000;
 					setErrCode(-3);
 					// out of range
 				}

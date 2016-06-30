@@ -2,8 +2,10 @@ package org.apache.struts.common.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Stack;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,7 +43,12 @@ public class CommonUtil {
 	
 	public String getNow(String fmt){
 		// get now time
-		Date date = new Date();
+		Calendar calendar = Calendar.getInstance();
+		TimeZone tz = TimeZone.getDefault();
+		tz.setRawOffset(28800000);
+		calendar.setTimeZone(tz);
+		Date date = calendar.getTime();
+		
 		DateFormat format = new SimpleDateFormat(fmt);
 		String time = format.format(date);
 		
@@ -62,7 +69,7 @@ public class CommonUtil {
         int result_length = result.length();
         StringBuilder temp0 = new StringBuilder();
         for(int i = 0; i < length - result_length; i++){
-            temp0.append('0');  
+            temp0.append('0');
         }
         
         return temp0.toString() + result.toString();
