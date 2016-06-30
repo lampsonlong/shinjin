@@ -7,4 +7,15 @@ $(document).keypress(function(e) {
    if(e.which == 13) {
 	   Refresh();
    }  
-}); 
+});
+
+$(document).ready(function(){
+	$(".hidDt input").each(function(){
+		var millis = $(this).val();
+		if(millis != ""){
+			var dt = new Date(parseInt(millis)).toLocaleString();
+			$(this).parent().text(dt);
+		}
+		
+	})
+})

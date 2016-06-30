@@ -1,11 +1,8 @@
 package org.apache.struts.common.util;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Stack;
-import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,18 +38,12 @@ public class CommonUtil {
 		return ret;
 	}
 	
-	public String getNow(String fmt){
-		// get now time
-		Calendar calendar = Calendar.getInstance();
-		int tzLocal = calendar.getTimeZone().getRawOffset();
-		int tzShanghai = TimeZone.getTimeZone("Asia/Shanghai").getRawOffset();
-		calendar.add(Calendar.MILLISECOND, -tzLocal + tzShanghai);
+	public long getGMTMillis(){
+		Calendar cal = Calendar.getInstance();
+		Date date = cal.getTime();
+		long millis = date.getTime();
 		
-		Date date = calendar.getTime();
-		DateFormat format = new SimpleDateFormat(fmt);
-		String time = format.format(date);
-		
-		return time;
+		return millis;
 	}
 	
 	public static String base10to62(long number, int length){

@@ -32,8 +32,7 @@ public class GpsAction extends ActionSupport {
 		String accuracy = request.getParameter("position.accuracy");
 		String latitude = request.getParameter("position.latitude");
 		String longitude = request.getParameter("position.longitude");
-		String nowtimeNoSlash = util.getNow("yyyyMMddHHmmss");
-		String nowtimeSlash = util.getNow("yyyy-MM-dd HH:mm:ss");
+		String nowTimeGMT = String.valueOf(util.getGMTMillis());
 		
 		Map<String, Position> ipList = GpsConstant.getTicketIpList();
 		if (ipList != null) {
@@ -54,7 +53,7 @@ public class GpsAction extends ActionSupport {
 			position.setAccuracy(new BigDecimal(accuracy));
 			position.setLatitude(Double.valueOf(latitude).doubleValue());
 			position.setLongitude(Double.valueOf(longitude).doubleValue());
-			position.setDatetime(nowtimeSlash);
+			position.setDatetime(nowTimeGMT);
 			position.setIp(ip);
 			
 			GpsService gpsService = new GpsService();
@@ -74,7 +73,7 @@ public class GpsAction extends ActionSupport {
 					}
 					
 					// check OK
-					String kbcode = GpsConstant.getMasterTicketMinus(nowtimeNoSlash);
+					String kbcode = GpsConstant.getMasterTicketMinus(nowTimeGMT);
 					
 					if(kbcode != null){
 						position.setKbcode(kbcode);

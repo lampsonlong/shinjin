@@ -36,3 +36,11 @@ function errorCallback(error){
             break;
     }
 }
+
+$(document).ready(function(){
+	var millis = $("#datetime").val();
+	if(millis != ""){
+		var dt = new Date(parseInt(millis)).toLocaleString();
+		$("#getTime").text(dt);
+	}
+})

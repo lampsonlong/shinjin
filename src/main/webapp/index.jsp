@@ -50,7 +50,7 @@
         </s:if>
 		    <s:if test="position.kbcode!=null">
 			  <li>优惠码：<s:property value="position.kbcode" /></li>
-			  <li>取得時刻：<s:property value="position.datetime" /></li>
+			  <li>取得時刻：<span id="getTime"></span></li>
 			  </s:if>
 		  </ul>
 </div>
@@ -59,6 +59,7 @@
    <s:hidden id="accuracy" name="position.accuracy"></s:hidden>
    <s:hidden id="latitude" name="position.latitude"></s:hidden>
    <s:hidden id="longitude" name="position.longitude"></s:hidden>
+   <s:hidden id="datetime" name="position.datetime"></s:hidden>
 </s:form>
 
 </div>
