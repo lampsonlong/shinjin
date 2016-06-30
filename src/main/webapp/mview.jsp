@@ -26,9 +26,9 @@
 <body>
 
 <div class="container-fluid" align="center">
-  <div style="margin:5em 0;">
+  <div class="page-header">
     <h1>区域内优惠券发行终端 </h1>
-    <h1><small>——一览画面</small></h1>
+    <h1><small>——一览页面</small></h1>
   </div>
 
 	<s:if test="ipMap != null">
@@ -37,8 +37,9 @@
 		<table class="table table-striped table-bordered">
 		  <thead>
 		    <tr>
-		      <th>已获得优惠券IP</th>
-		      <th>获得时间</th>
+		      <th>领取优惠券IP</th>
+		      <th>领取时间</th>
+		      <th>优惠券码</th>
 		    </tr>
 		  </thead>
 		  
@@ -47,6 +48,7 @@
 			  <tr>
 			    <td><s:property value="value.ip"/></td>
 			    <td><s:property value="value.datetime"/></td>
+			    <td><s:property value="value.kbcode"/></td>
 			  </tr>
 			  </s:iterator>
 		  </tbody>

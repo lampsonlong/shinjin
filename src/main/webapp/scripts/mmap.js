@@ -29,7 +29,7 @@ function setBMapHeight(){
 	if(window.orientation == 90 || window.orientation == -90){
 		bzHeight = devWidth;
 	}
-	$("#map").css("height",bzHeight-480 + "px");
+	$("#map").css("height",bzHeight-500 + "px");
 }
 
 function reloadMap(lng, lat, tn, rad){
@@ -127,8 +127,6 @@ function setMasterPoint(){
 	
 	if(checkErr){
 		return false;
-	} else {
-		
 	}
 	
 	if(point != null && point != undefined){

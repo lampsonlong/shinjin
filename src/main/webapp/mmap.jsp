@@ -23,44 +23,52 @@
 <body>
 
 <div class="container-fluid" align="center">
-  <div style="margin:2em 0;">
-    <h1>区域内优惠券发行终端 </h1>
-    <h1><small>——设定画面</small></h1>
+  <div class="page-header">
+    <h1>区域内优惠券发行终端</h1>
+    <h1><small>——设定页面</small></h1>
   </div>
   
-  <div id="map" style="width:90%;margin-bottom:2em;"></div>
+  <div class="well" id="map" style="width:90%;margin-bottom:2em;"></div>
   
     <form class="form-horizontal">
+    
     <div class="form-group" id="areaInput">
-      <label for="area" class="col-sm-offset-2 col-sm-2 control-label">区域中心</label>
-      <div class="col-sm-4">
-        <input type="text" class="form-control" id="area" placeholder="地名" onblur="localSearch(this);">
-      </div>
-      <div class="col-sm-1" align="left">
-        <a href="javascript:void(0);" class="btn btn-primary btn-sm" onclick="localSearch(this);">定位检索</a>
-      </div>
+		  <label for="area" class="col-sm-offset-2 col-sm-2 control-label">区域中心</label>
+		  <div class="col-sm-4">
+		    <div class="input-group">
+		      <input type="text" class="form-control" id="area" placeholder="地名" onblur="localSearch(this);">
+		      <span class="input-group-btn">
+		        <button class="btn btn-primary" type="button">检索</button>
+		      </span>
+		    </div>
+		  </div>
     </div>
     
     <div class="form-group" id="radInput">
-      <label for="area" class="col-sm-offset-2 col-sm-2 control-label">区域半径</label>
-      <div class="col-sm-4">
-        <input type="text" class="form-control" id="rad" placeholder="2000"> 
+      <label for="rad" class="col-sm-offset-2 col-sm-2 control-label">区域半径</label>
+	    <div class="col-sm-4">
+		    <div class="input-group">
+				  <input type="text" class="form-control" id="rad" placeholder="2000" maxlength="6" aria-describedby="basic-addon2">
+				  <span class="input-group-addon" id="basic-addon2">米</span>
+		    </div>
+			</div>
+      <div class="col-sm-1">
+        <label for="rad" class="control-label inputErr text-left text-danger" id="radErr"></label>
       </div>
-      <div class="col-sm-1" align="left">
-        米 <b id="radErr" class="inputErr"></b>
-      </div>
-    </div>
-    
-    <div class="form-group" id="areaInput">
+		</div>
+		
+		<div class="form-group" id="areaInput">
       <label for="tnum" class="col-sm-offset-2 col-sm-2 control-label">优惠券数</label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="tnum" placeholder="50"> 
+        <div class="input-group">
+          <input type="text" class="form-control" id="tnum" placeholder="50" maxlength="5" aria-describedby="basic-addon3">
+          <span class="input-group-addon" id="basic-addon3">张  </span>
+        </div>
       </div>
-      <div class="col-sm-1" align="left">
-                          张  <b id="tnumErr" class="inputErr"></b>
+      <div class="col-sm-1">
+        <label for="tnum" class="control-label inputErr text-left text-danger" id="tnumErr"></label>
       </div>
     </div>
-    
     
     <div class="form-group">
       <div class="col-sm-offset-4 col-sm-2">

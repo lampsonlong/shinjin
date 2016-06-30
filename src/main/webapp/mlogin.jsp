@@ -22,9 +22,9 @@
 <body>
 
 <div class="container-fluid" align="center">
-	<div style="margin:5em 0;">
-		<h1>区域内优惠券发行终端 </h1>
-		<h1><small>——登陆画面</small></h1>
+	<div class="page-header">
+		<h1>区域内优惠券发行终端</h1>
+		<h1><small>——登陆页面</small></h1>
 	</div>
 
 	<form class="form-horizontal">
@@ -33,9 +33,11 @@
 	    <div class="col-sm-4">
 	      <input type="password" class="form-control" id="password" placeholder="密码">
 	    </div>
+	    <div class="col-sm-2">
 	     <s:if test="errMsg!=null">
-			   <label for="passwordError" class="col-sm-2 control-label">无效的密码！</label>
+			   <label for="passwordError" class="control-label inputErr text-left text-danger">密码错误！</label>
 			 </s:if>
+			 </div>
 	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-4 col-sm-4">

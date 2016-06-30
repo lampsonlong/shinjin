@@ -22,10 +22,10 @@
 <body>
 
 <div class="container-fluid" align="center">
-  <div style="margin:5em 0;">
-    <h1>区域内优惠券取得终端 </h1>
+  <div class="page-header">
+    <h1>区域内优惠券取得终端</h1>
+    <h1><small>——领券页面</small></h1>
   </div>
-</div>
 
 <div class="col-sm-offset-4 col-sm-4">
 	<s:if test="position==null || position.kbcode==null">
@@ -34,7 +34,7 @@
 	<br/><br/><br/>
 	   <ul class="list-unstyled">
 	      <s:if test="errCode==1">
-        <li>你已经领取过优惠券啦！不能贪心哟！</li>
+        <li>你已经领取到优惠券啦！</li>
         </s:if>
 	      <s:if test="errCode==0">
 			  <li>恭喜你获得了优惠券！</li>
@@ -61,6 +61,6 @@
    <s:hidden id="longitude" name="position.longitude"></s:hidden>
 </s:form>
 
-
+</div>
 </body>
 </html>
