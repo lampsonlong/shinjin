@@ -39,10 +39,10 @@ public class CommonUtil {
 		return ret;
 	}
 	
-	public String getNow(){
+	public String getNow(String fmt){
 		// get now time
 		Date date = new Date();
-		DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		DateFormat format = new SimpleDateFormat(fmt);
 		String time = format.format(date);
 		
 		return time;

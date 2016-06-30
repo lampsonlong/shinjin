@@ -30,43 +30,30 @@
 	  <exception-mapping exception="java.lang.Exception" result="error" />
 	</global-exception-mappings>
 	
-  <action name="index">
-	  <result name="success">/index.jsp</result>
-	</action>
-         
-    <action name="hello" class="org.apache.struts.helloworld.action.HelloWorldAction" method="execute">
-      <result name="success">/HelloWorld.jsp</result>
-    </action>
-    
+	  <action name="index">
+		  <result name="success">/index.jsp</result>
+		</action>
+
     <action name="gps" class="org.apache.struts.gps.action.GpsAction" method="execute">
       <result name="success">/index.jsp</result>
     </action>
     
     <action name="mlogin" class="org.apache.struts.gps.action.MLoginAction" method="execute">
-      <result name="success">/management.jsp</result>
+      <result name="success">/mmap.jsp</result>
       <result name="failed">/mlogin.jsp</result>
     </action>
     
     <action name="master" class="org.apache.struts.gps.action.MasterAction" method="execute">
-      <result name="success">/management.jsp</result>
+      <result name="success">/mmap.jsp</result>
     </action>
     
     <action name="mview" class="org.apache.struts.gps.action.MasterAction" method="mview">
       <result name="success">/mview.jsp</result>
-      <result name="master">/management.jsp</result>
+      <result name="master">/mmap.jsp</result>
     </action>
     
     <action name="mview2master" class="org.apache.struts.gps.action.MasterAction" method="mview2master">
-      <result name="success">/management.jsp</result>
-    </action>
-    
-    <action name="*register" class="org.apache.struts.register.action.RegisterAction" method="{1}">
-      <result name="success">/thanks.jsp</result>
-      <result name="input">/register.jsp</result>
-    </action>
-    
-    <action name="registerInput" class="org.apache.struts.register.action.RegisterAction" method="input" >
-      <result name="input">/register.jsp</result>
+      <result name="success">/mmap.jsp</result>
     </action>
   </package>
 </struts>

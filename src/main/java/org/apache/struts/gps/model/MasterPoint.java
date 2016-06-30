@@ -9,6 +9,8 @@ public class MasterPoint {
 	private double radius;
 	
 	private int ticket;
+	
+	private int allTicket;
 
 	public double getLatitude() {
 		return latitude;
@@ -40,5 +42,13 @@ public class MasterPoint {
 
 	public void setTicket(int ticket) {
 		this.ticket = ticket;
+	}
+
+	public int getAllTicket() {
+		return allTicket;
+	}
+
+	public void setAllTicket(int allTicket) {
+		this.allTicket = allTicket;
 	}
 }

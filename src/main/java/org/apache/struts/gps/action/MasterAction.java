@@ -47,6 +47,7 @@ public class MasterAction extends ActionSupport {
 		masterpoint.setLatitude(Double.valueOf(latitude).doubleValue());
 		masterpoint.setLongitude(Double.valueOf(longitude).doubleValue());
 		masterpoint.setTicket(Integer.parseInt(ticketnumber));
+		masterpoint.setAllTicket(Integer.parseInt(ticketnumber));
 		masterpoint.setRadius(Double.valueOf(radius).doubleValue());
 		
 		GpsConstant.setMasterPoint(masterpoint);

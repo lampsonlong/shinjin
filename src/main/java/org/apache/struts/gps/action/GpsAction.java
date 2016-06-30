@@ -20,7 +20,7 @@ public class GpsAction extends ActionSupport {
     
     private Position position;
     
-    private String errMsg;
+    private int errCode = -9999;
 	
 	public String execute() throws Exception {
 		HttpServletRequest request = (HttpServletRequest)
@@ -32,14 +32,15 @@ public class GpsAction extends ActionSupport {
 		String accuracy = request.getParameter("position.accuracy");
 		String latitude = request.getParameter("position.latitude");
 		String longitude = request.getParameter("position.longitude");
-		String nowtime = util.getNow();
+		String nowtimeNoSlash = util.getNow("yyyyMMddHHmmss");
+		String nowtimeSlash = util.getNow("yyyy-MM-dd HH:mm:ss");
 		
 		Map<String, Position> ipList = GpsConstant.getTicketIpList();
 		if (ipList != null) {
 			if(ipList.size() > 0 && ipList.containsKey(ip)){
 				position = new Position();
 				setPosition(ipList.get(ip));
-				errMsg = "You Got The Ticket!";
+				setErrCode(1);
 				return SUCCESS;
 			}
 		}
@@ -53,7 +54,7 @@ public class GpsAction extends ActionSupport {
 			position.setAccuracy(new BigDecimal(accuracy));
 			position.setLatitude(Double.valueOf(latitude).doubleValue());
 			position.setLongitude(Double.valueOf(longitude).doubleValue());
-			position.setDatetime(nowtime);
+			position.setDatetime(nowtimeSlash);
 			position.setIp(ip);
 			
 			GpsService gpsService = new GpsService();
@@ -63,7 +64,7 @@ public class GpsAction extends ActionSupport {
 			
 			
 			if(dst == -1){
-				errMsg = "Error : No Master Data! Please Wait A Moment And Try Again!";
+				setErrCode(-1);
 				position = null;
 			} else {
 				if (dst <= GpsConstant.getMasterPoint().getRadius()/1000){
@@ -73,19 +74,19 @@ public class GpsAction extends ActionSupport {
 					}
 					
 					// check OK
-					String kbcode = GpsConstant.getMasterTicketMinus(nowtime);
+					String kbcode = GpsConstant.getMasterTicketMinus(nowtimeNoSlash);
 					
 					if(kbcode != null){
 						position.setKbcode(kbcode);
-						errMsg = "Congratulations! You Get The Ticket!";
+						setErrCode(0);
 						tIpList.put(ip, position);
 						GpsConstant.setTicketIpList(tIpList);
 					} else {
-						errMsg = "Sorry, No Ticket!";
+						setErrCode(-2);
 					}
 					
 				} else {
-					errMsg = "Out Of Range!";
+					setErrCode(-3);
 					// out of range
 				}
 				
@@ -122,11 +123,13 @@ public class GpsAction extends ActionSupport {
         this.position = position;
     }
 
-	public String getErrMsg() {
-		return errMsg;
+
+	public int getErrCode() {
+		return errCode;
 	}
 
-	public void setErrMsg(String errMsg) {
-		this.errMsg = errMsg;
+
+	public void setErrCode(int errCode) {
+		this.errCode = errCode;
 	}
 }
