@@ -11,11 +11,11 @@ $(document).keypress(function(e) {
 });
 
 $(document).ready(function(){
-	$("input[type='hidden']").each(function(){
-		var millis = $(this).val();
+	$(".dt").each(function(){
+		var millis = $(this).text();
 		if(millis != ""){
 			var dt = new Date(parseInt(millis)).toLocaleString();
-			$(this).parent().text(dt);
+			$(this).text(dt);
 		}
 		
 	})
