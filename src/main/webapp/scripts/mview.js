@@ -11,7 +11,7 @@ $(document).keypress(function(e) {
 });
 
 $(document).ready(function(){
-	$(".dt input").each(function(){
+	$("input[type='hidden']").each(function(){
 		var millis = $(this).val();
 		if(millis != ""){
 			var dt = new Date(parseInt(millis)).toLocaleString();

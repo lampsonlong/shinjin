@@ -47,7 +47,7 @@
 			  <s:iterator value="ipMap" id="column">
 			  <tr>
 			    <td><s:property value="value.ip"/></td>
-			    <td class="dt"><s:hidden name="value.datetime"></s:hidden></td>
+			    <td><s:hidden class="dt" name="value.datetime"></s:hidden></td>
 			    <td><s:property value="value.kbcode"/></td>
 			    
 			  </tr>
