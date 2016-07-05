@@ -29,7 +29,6 @@ public class GpsAction extends ActionSupport {
 		CommonUtil util = new CommonUtil();
 		
 		String ip = util.getIpAddr(request);
-		String accuracy = request.getParameter("position.accuracy");
 		String latitude = request.getParameter("position.latitude");
 		String longitude = request.getParameter("position.longitude");
 		String nowTimeGMT = String.valueOf(util.getGMTMillis());
@@ -44,13 +43,10 @@ public class GpsAction extends ActionSupport {
 			}
 		}
 		
-		if (accuracy == null ||
-				latitude == null ||
-				longitude == null) {
+		if (latitude == null || longitude == null) {
 			return SUCCESS;
 		} else {
 			position = new Position();
-			position.setAccuracy(new BigDecimal(accuracy));
 			position.setLatitude(Double.valueOf(latitude).doubleValue());
 			position.setLongitude(Double.valueOf(longitude).doubleValue());
 			position.setDatetime(nowTimeGMT);
@@ -60,7 +56,6 @@ public class GpsAction extends ActionSupport {
 			
 			double dst = 0;
 			dst = gpsService.geodeticTransform(position);
-			
 			
 			if(dst == -1){
 				setErrCode(-1);
@@ -72,22 +67,23 @@ public class GpsAction extends ActionSupport {
 						tIpList = new HashMap<String,Position>();
 					}
 					
-					// check OK
 					String kbcode = GpsConstant.getMasterTicketMinus(nowTimeGMT);
 					
 					if(kbcode != null){
+						// check OK
 						position.setKbcode(kbcode);
 						setErrCode(0);
 						tIpList.put(ip, position);
 						GpsConstant.setTicketIpList(tIpList);
 					} else {
+						// no code
 						setErrCode(-2);
 					}
 					
 				} else {
-					dst = dst - GpsConstant.getMasterPoint().getRadius()/1000;
-					setErrCode(-3);
 					// out of range
+					dst = new BigDecimal(dst - GpsConstant.getMasterPoint().getRadius()*0.001).setScale(4, BigDecimal.ROUND_CEILING).doubleValue();
+					setErrCode(-3);
 				}
 				
 				position.setDst(dst);

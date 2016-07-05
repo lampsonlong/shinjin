@@ -20,7 +20,7 @@ public class MasterAction extends ActionSupport {
 	
 	private MasterPoint masterpoint;
 	
-	private String message;
+	private int ret;
 	
 	private Map<String, Position> ipMap;
 	
@@ -43,16 +43,21 @@ public class MasterAction extends ActionSupport {
 			return "mlogin";
 		}
 		
-		masterpoint = new MasterPoint();
-		masterpoint.setLatitude(Double.valueOf(latitude).doubleValue());
-		masterpoint.setLongitude(Double.valueOf(longitude).doubleValue());
-		masterpoint.setTicket(Integer.parseInt(ticketnumber));
-		masterpoint.setAllTicket(Integer.parseInt(ticketnumber));
-		masterpoint.setRadius(Double.valueOf(radius).doubleValue());
+		try {
+			masterpoint = new MasterPoint();
+			masterpoint.setLatitude(Double.valueOf(latitude).doubleValue());
+			masterpoint.setLongitude(Double.valueOf(longitude).doubleValue());
+			masterpoint.setTicket(Integer.parseInt(ticketnumber));
+			masterpoint.setAllTicket(Integer.parseInt(ticketnumber));
+			masterpoint.setRadius(Double.valueOf(radius).doubleValue());
+		} catch (Exception e){
+			ret = -1;
+			return SUCCESS;
+		}
 		
 		GpsConstant.setMasterPoint(masterpoint);
 		session.setAttribute("setMaster", "OK");
-		setMessage("Setting Complete !");
+		ret = 0;
 		// reset ipList
 		GpsConstant.setTicketIpList(null);
 		
@@ -90,19 +95,19 @@ public class MasterAction extends ActionSupport {
 		this.masterpoint = masterpoint;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 	public Map<String, Position> getIpMap() {
 		return ipMap;
 	}
 
 	public void setIpMap(Map<String, Position> ipMap) {
 		this.ipMap = ipMap;
+	}
+
+	public int getRet() {
+		return ret;
+	}
+
+	public void setRet(int ret) {
+		this.ret = ret;
 	}
 }

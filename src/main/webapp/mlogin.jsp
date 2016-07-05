@@ -47,7 +47,7 @@
 	</form>
 
 	<s:form id="form" method="post" action='mlogin'>
-	  <s:hidden id="hidpwd" name="hidpwd"></s:hidden>
+	  <s:hidden id="hidpwd" name="password"></s:hidden>
 	  <s:hidden id="hidErrMsg" name="errMsg"></s:hidden>
 	</s:form>
 </div>

@@ -13,7 +13,6 @@ function GetGeolocation(){
 function successCallback(position){
     var coords = position.coords;
 	
-	$("#accuracy").val(coords.accuracy);
 	$("#latitude").val(coords.latitude);
 	$("#longitude").val(coords.longitude);
 	
@@ -21,7 +20,8 @@ function successCallback(position){
 }
 
 function errorCallback(error){
-    switch(error.code) {
+	alert(error.message);
+    /*switch(error.code) {
         case error.TIMEOUT:
             alert("A timeout occured! Please try again!");
             break;
@@ -34,7 +34,7 @@ function errorCallback(error){
         case error.UNKNOWN_ERROR:
             alert('An unknown error occured!');
             break;
-    }
+    }*/
 }
 
 $(document).ready(function(){

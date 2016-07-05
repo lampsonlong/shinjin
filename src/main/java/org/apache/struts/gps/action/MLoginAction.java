@@ -27,7 +27,7 @@ public class MLoginAction extends ActionSupport {
 		CommonUtil util = new CommonUtil();
 		HttpSession session = request.getSession();
 		
-		String password = request.getParameter("hidpwd");
+		String password = request.getParameter("password");
 		
 		if(password == null || !GpsConstant.getPwd().equals(password)) {
 			if(util.isLogin(session)){

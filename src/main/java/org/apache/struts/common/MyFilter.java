@@ -17,15 +17,12 @@ import org.apache.struts.common.util.CommonUtil;
 
 public class MyFilter implements Filter {
 	
-	public void destroy() {  
-        // TODO Auto-generated method stub  
-          
+	public void destroy() {
     }
 	
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {  
-        // TODO Auto-generated method stub  
-        HttpServletRequest request = (HttpServletRequest) req;  
-        HttpServletResponse response = (HttpServletResponse) res;  
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) res;
         
         String url = request.getServletPath();
         boolean toMLogin = false;
@@ -33,10 +30,10 @@ public class MyFilter implements Filter {
         
         
         if("/index.jsp".equals(url)){
-        	response.setContentType("text/html;charset=utf-8");  
-            PrintWriter out = response.getWriter();  
-            out.println("<script language='javascript' type='text/javascript'>");  
-            out.println("window.location.href='" + request.getContextPath() + "/gps.action'");  
+        	response.setContentType("text/html;charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script language='javascript' type='text/javascript'>");
+            out.println("window.location.href='" + request.getContextPath() + "/gps.action'");
             out.println("</script>");
         } else if("/mlogin.jsp".equals(url)
         		|| url.endsWith(".js")
@@ -59,16 +56,16 @@ public class MyFilter implements Filter {
         	toIndex = true;
         }
         
-        if (toIndex){
-        	response.setContentType("text/html;charset=utf-8");  
-            PrintWriter out = response.getWriter();  
-            out.println("<script language='javascript' type='text/javascript'>");  
-            out.println("window.location.href='" + request.getContextPath() + "/index.jsp'");  
-            out.println("</script>");  
-        } else if(toMLogin){
-        	response.setContentType("text/html;charset=utf-8");  
-            PrintWriter out = response.getWriter();  
-            out.println("<script language='javascript' type='text/javascript'>");  
+        if (toIndex) {
+        	response.setContentType("text/html;charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script language='javascript' type='text/javascript'>");
+            out.println("window.location.href='" + request.getContextPath() + "/index.jsp'");
+            out.println("</script>");
+        } else if(toMLogin) {
+        	response.setContentType("text/html;charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script language='javascript' type='text/javascript'>");
             out.println("window.location.href='" + request.getContextPath() + "/mlogin.jsp'");
             out.println("</script>");
         } else {
@@ -77,8 +74,6 @@ public class MyFilter implements Filter {
     }
 	
 	public void init(FilterConfig arg0) throws ServletException {  
-        // TODO Auto-generated method stub  
-  
     } 
 
 }

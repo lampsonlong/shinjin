@@ -1,11 +1,7 @@
 package org.apache.struts.gps.model;
 
-import java.math.BigDecimal;
 
 public class Position {
-
-	private BigDecimal accuracy;
-	
 	private double latitude;
 	
 	private double longitude;
@@ -17,15 +13,7 @@ public class Position {
 	private double dst;
 	
 	private String kbcode;
-
-	public BigDecimal getAccuracy() {
-		return accuracy;
-	}
-
-	public void setAccuracy(BigDecimal accuracy) {
-		this.accuracy = accuracy;
-	}
-
+	
 	public double getLatitude() {
 		return latitude;
 	}

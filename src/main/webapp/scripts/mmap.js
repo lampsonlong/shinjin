@@ -6,10 +6,18 @@ $(function() {
 	// set map height by orientation
 	setBMapHeight();
 	
+	var ret = $("#ret").val();
 	var lat = $("#latitude").val();
 	var lng = $("#longitude").val();
 	var tn = $("#allticket").val();
 	var rad = $("#radius").val();
+	
+	
+	if(ret == "-1"){
+		initMap();
+		alert("提交参数错误。");
+		return;
+	}
 	
 	if(lat != ""
 		&& lng != ""

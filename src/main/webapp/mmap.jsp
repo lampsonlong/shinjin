@@ -85,6 +85,7 @@
 
 
 <s:form id="form" method="post" action='master'>
+   <s:hidden id="ret" name="ret"></s:hidden>
    <s:hidden id="latitude" name="masterpoint.latitude"></s:hidden>
    <s:hidden id="longitude" name="masterpoint.longitude"></s:hidden>
    <s:hidden id="ticket" name="masterpoint.ticket"></s:hidden>

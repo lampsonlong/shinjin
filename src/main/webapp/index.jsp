@@ -56,7 +56,6 @@
 </div>
 
 <s:form id="form1" method="post" action='gps'>
-   <s:hidden id="accuracy" name="position.accuracy"></s:hidden>
    <s:hidden id="latitude" name="position.latitude"></s:hidden>
    <s:hidden id="longitude" name="position.longitude"></s:hidden>
    <s:hidden id="datetime" name="position.datetime"></s:hidden>
