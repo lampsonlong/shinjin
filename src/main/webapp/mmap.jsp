@@ -23,7 +23,7 @@
 
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid flt">
 		<h1 align="center">设 定 页 面</h1>
 		<div id="map" style="width:80%;height:400px;margin:0 auto;"></div>
 		<div style="margin-top:20px;" align="center">
@@ -77,7 +77,7 @@
 				<div class="col-md-4" style="margin-top:20px;">
 					<s:url var="list" action="mview"></s:url>
 					<button class="btn btn-primary btn-lg" onclick="FormSubmit()">设定</button>
-					<s:a class="btn btn-primary btn-lg" href="%{list}" id="a_list"><button  type="button"  id="btn_list" class="btn btn-primary btn-lg" >一览</button></s:a>
+					<s:a href="%{list}" id="a_list"><button  type="button"  id="btn_list" class="btn btn-primary btn-lg" >一览</button></s:a>
 				</div>
 			</div>
 		</div>

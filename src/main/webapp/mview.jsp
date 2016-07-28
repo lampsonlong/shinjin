@@ -68,9 +68,9 @@ html, body {
 					<tr>
 						<td style="width: 33.33%"><s:property value="value.ip" /></td>
 						<td style="width: 33.33%" class="hidDatetime"><s:property
-								value="value.datetime" /></td>
-						<s:hidden name="value.datetime" />
+								value="value.datetime" /></td>						
 						<td style="width: 33.33%"><s:property value="value.kbcode" /></td>
+						<s:hidden name="value.datetime" />
 					</tr>
 				</s:iterator>
 			</table>

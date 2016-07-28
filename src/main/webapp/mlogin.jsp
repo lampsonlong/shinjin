@@ -18,63 +18,55 @@
 <script type="text/javascript" src="scripts/mlogin.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <style type="text/css">
-body {
+body{
 	position: relative;
 	width: 100%;
-	height: 100%;
 	margin-top: 5%;
 }
 
 .block {
 	position: relative;
 	width: 100%;
-	height: 100%;
 	margin-top: 8%;
 }
 
 .block_10px {
 	position: relative;
 	width: 100%;
-	height: 100%;
 	margin-top: 10px;
 }
 
 .block_50px {
 	position: relative;
 	width: 100%;
-	height: 100%;
 	margin-top: 50px;
 }
 </style>
 
 </head>
 <body>
-	<h1 class="text-center">登 录 页 面</h1>
-	<div class="block"></div>
-	<s:form id="login_form" action="mlogin">
-		<div class="row">
-			<div class="col-xs-offset-4 col-xs-4">
-				<label for="password" style="font-size: 20px">请输入密码:</label>
-				<div class="block_10px"></div>
-				<input id="password" name="password" class="form-control" type="password"/>
-				<div class="row">
-					<div class="col-md-offset-4 col-md-4" style="text-align: center"><br/>
-						<button class="btn btn-primary btn-lg" onclick="OnSubmit()">登 录</button>
+	<div class="container-fluid">
+		<h1 class="text-center">登 录 页 面</h1>
+		<div class="block"></div>
+		<s:form id="login_form" action="mlogin">
+			<div class="row">
+				<div class="col-xs-offset-4 col-xs-4">
+					<label for="password" style="font-size: 20px">请输入密码:</label>
+					<div class="block_10px"></div>
+					<input id="password" name="password" class="form-control" type="password"/>
+					<div class="row">
+						<div class="col-md-offset-4 col-md-4" style="text-align: center"><br/>
+							<button class="btn btn-primary btn-lg" onclick="OnSubmit()">登 录</button>
+						</div>
+						<s:hidden name="errMsg" id="errMsg_hidden"/>
 					</div>
-					<s:hidden name="errMsg" id="errMsg_hidden"/>
+				</div>
+				<div class="col-xs-4">
+					<div class="block_50px"></div>
+					<label id="errMsg_label" style="display: none; color: red">你的密码不正确!</label>
 				</div>
 			</div>
-			<div class="col-xs-4">
-				<div class="block_50px"></div>
-				<label id="errMsg_label" style="display: none; color: red">你的密码不正确!</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-offset-4 col-xs-4">
-				<s:hidden name="errMsg" id="errMsg_hidden" />
-			</div>
-		</div>
-
-	</s:form>
+		</s:form>
+	</div>
 </body>
 </html>
