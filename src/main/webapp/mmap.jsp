@@ -13,7 +13,7 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=24d29189b1799e5a0f5358961f63616c"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=24d29189b1799e5a0f5358961f63616c&s=1" ></script>
 
 <script type="text/javascript" src="scripts/json2.js"></script>
 <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
