@@ -39,7 +39,7 @@
 					</div>
 				</div>
 			</div>
-			<form action="master" method="post" id="form_master" class="form-horizontal" >
+			<s:form action="master" method="post" id="form_master" class="form-horizontal" >
 				<input type="hidden" id="longitude" name="masterPoint.longitude" value="${requestScope.masterPoint.longitude}"/>
 				<input type="hidden" id="latitude" name="masterPoint.latitude" value="${requestScope.masterPoint.latitude}"/>
 				<div class="form-inline" style="margin-top:20px;">
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 				</div>	
-			</form>
+			</s:form>
 			<label id="msg" style="color:#ff0000;"></label>
 			<div class="row">
 				<div class="col-xs-4"></div>	
