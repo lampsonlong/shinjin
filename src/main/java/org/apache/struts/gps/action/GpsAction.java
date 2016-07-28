@@ -20,7 +20,7 @@ public class GpsAction extends ActionSupport {
     
     private Position position;
     
-    private int errCode = -9999;
+    private int ret = 9;
 	
 	public String execute() throws Exception {
 		HttpServletRequest request = (HttpServletRequest)
@@ -38,7 +38,7 @@ public class GpsAction extends ActionSupport {
 			if(ipList.size() > 0 && ipList.containsKey(ip)){
 				position = new Position();
 				setPosition(ipList.get(ip));
-				setErrCode(1);
+				setRet(1);
 				return SUCCESS;
 			}
 		}
@@ -47,8 +47,14 @@ public class GpsAction extends ActionSupport {
 			return SUCCESS;
 		} else {
 			position = new Position();
-			position.setLatitude(Double.valueOf(latitude).doubleValue());
-			position.setLongitude(Double.valueOf(longitude).doubleValue());
+			
+			try{
+				position.setLatitude(Double.valueOf(latitude).doubleValue());
+				position.setLongitude(Double.valueOf(longitude).doubleValue());
+			} catch(Exception e){
+				setRet(-9999);
+				return SUCCESS;
+			}
 			position.setDatetime(nowTimeGMT);
 			position.setIp(ip);
 			
@@ -58,7 +64,7 @@ public class GpsAction extends ActionSupport {
 			dst = gpsService.geodeticTransform(position);
 			
 			if(dst == -1){
-				setErrCode(-1);
+				setRet(-1);
 				position = null;
 			} else {
 				if (dst <= GpsConstant.getMasterPoint().getRadius()/1000){
@@ -72,18 +78,18 @@ public class GpsAction extends ActionSupport {
 					if(kbcode != null){
 						// check OK
 						position.setKbcode(kbcode);
-						setErrCode(0);
+						setRet(0);
 						tIpList.put(ip, position);
 						GpsConstant.setTicketIpList(tIpList);
 					} else {
 						// no code
-						setErrCode(-2);
+						setRet(-2);
 					}
 					
 				} else {
 					// out of range
 					dst = new BigDecimal(dst - GpsConstant.getMasterPoint().getRadius()*0.001).setScale(4, BigDecimal.ROUND_CEILING).doubleValue();
-					setErrCode(-3);
+					setRet(-3);
 				}
 				
 				position.setDst(dst);
@@ -119,13 +125,12 @@ public class GpsAction extends ActionSupport {
         this.position = position;
     }
 
-
-	public int getErrCode() {
-		return errCode;
+	public int getRet() {
+		return ret;
 	}
 
 
-	public void setErrCode(int errCode) {
-		this.errCode = errCode;
+	public void setRet(int ret) {
+		this.ret = ret;
 	}
 }

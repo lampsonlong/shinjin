@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<title>区域内优惠券发行终端</title>
+<title>区域内优惠券发行终端——设定页面</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -19,79 +19,66 @@
 <script type="text/javascript" src="scripts/mmap.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
+
 </head>
 <body>
-
-<div class="container-fluid" align="center">
-  <div class="page-header">
-    <h1>区域内优惠券发行终端</h1>
-    <h1><small>——设定页面</small></h1>
-  </div>
-  
-  <div class="well" id="map" style="width:90%;margin-bottom:2em;"></div>
-  
-    <form class="form-horizontal">
-    
-    <div class="form-group" id="areaInput">
-		  <label for="area" class="col-sm-offset-2 col-sm-2 control-label">区域中心</label>
-		  <div class="col-sm-4">
-		    <div class="input-group">
-		      <input type="text" class="form-control" id="area" placeholder="地名" onblur="localSearch(this);">
-		      <span class="input-group-btn">
-		        <button class="btn btn-primary" type="button">检索</button>
-		      </span>
-		    </div>
-		  </div>
-    </div>
-    
-    <div class="form-group" id="radInput">
-      <label for="rad" class="col-sm-offset-2 col-sm-2 control-label">区域半径</label>
-	    <div class="col-sm-4">
-		    <div class="input-group">
-				  <input type="text" class="form-control" id="rad" placeholder="2000" maxlength="6" aria-describedby="basic-addon2">
-				  <span class="input-group-addon" id="basic-addon2">米</span>
-		    </div>
+	<h1 align="center">设 定 页 面</h1>
+	<div id="map" style="width:80%;height:400px;margin:0 auto;"></div>
+	<div style="margin-top:20px;" align="center">
+		<div class="form-inline">
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label style="font-size:20px;">区域中心</label>
+						<input class="form-control" type="text" id="area_center" style="width:200px;font-size:20px;">
+						<button class="btn btn-primary" onclick="PointSearch()" >检索</button><br>
+					</div>
+				</div>
 			</div>
-      <div class="col-sm-1">
-        <label for="rad" class="control-label inputErr text-left text-danger" id="radErr"></label>
-      </div>
 		</div>
-		
-		<div class="form-group" id="areaInput">
-      <label for="tnum" class="col-sm-offset-2 col-sm-2 control-label">优惠券数</label>
-      <div class="col-sm-4">
-        <div class="input-group">
-          <input type="text" class="form-control" id="tnum" placeholder="50" maxlength="5" aria-describedby="basic-addon3">
-          <span class="input-group-addon" id="basic-addon3">张  </span>
-        </div>
-      </div>
-      <div class="col-sm-1">
-        <label for="tnum" class="control-label inputErr text-left text-danger" id="tnumErr"></label>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="col-sm-offset-4 col-sm-2">
-        <a class="btn btn-primary btn-lg btn-block" href="javascript:void(0);" onclick="setMasterPoint()" role="button">設 定</a>
-      </div>
-      <div class="col-sm-2" id="viewDisplay" style="display:none">
-        <s:url action="mview" var="mviewLink"></s:url>
-        <a class="btn btn-primary btn-lg btn-block" href="${mviewLink}" role="button">一 览</a>
-      </div>
-    </div>
-  </form>
-  
-</div>
-
-
-<s:form id="form" method="post" action='master'>
-   <s:hidden id="ret" name="ret"></s:hidden>
-   <s:hidden id="latitude" name="masterpoint.latitude"></s:hidden>
-   <s:hidden id="longitude" name="masterpoint.longitude"></s:hidden>
-   <s:hidden id="ticket" name="masterpoint.ticket"></s:hidden>
-   <s:hidden id="allticket" name="masterpoint.allTicket"></s:hidden>
-   <s:hidden id="radius" name="masterpoint.radius"></s:hidden>
-</s:form>
-
+		<form action="master" method="post" id="form_master" class="form-horizontal" >
+			<input type="hidden" id="longitude" name="masterPoint.longitude" value="${requestScope.masterPoint.longitude}"/>
+			<input type="hidden" id="latitude" name="masterPoint.latitude" value="${requestScope.masterPoint.latitude}"/>
+			<div class="form-inline" style="margin-top:20px;">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label style="font-size:20px;">区域半径</label>
+							<div class="input-group">
+			      				<input type="text" class="form-control" id="area_radius" name="masterPoint.radius" style="width:215px;font-size:20px;" value="${requestScope.masterPoint.radius}">
+			      				<div class="input-group-addon">米</div>
+			    			</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-inline" style="margin-top:20px;">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label style="font-size:20px;">优惠券数</label>
+							<div class="input-group">
+			      				<input type="text" class="form-control" id="coupon_number" name="masterPoint.allTicket" style="width:215px;font-size:20px;" value="${requestScope.masterPoint.allTicket}">
+			      				<div class="input-group-addon">张</div>
+			    			</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</form>
+		<label id="msg" style="color:#ff0000;"></label>
+		<div class="row">
+			<div class="col-md-4"></div>	
+			<div class="col-md-4" style="margin-top:20px;">
+				<s:url var="list" action="mview"></s:url>
+				<button class="btn btn-primary btn-lg" onclick="FormSubmit()">设定</button>
+				<s:a class="btn btn-primary btn-lg" href="%{list}" id="a_list"><button  type="button"  id="btn_list" class="btn btn-primary btn-lg" >一览</button></s:a>
+			</div>
+		</div>
+	</div>	
 </body>
 </html>
+

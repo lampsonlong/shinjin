@@ -18,7 +18,7 @@ public class MasterAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	
-	private MasterPoint masterpoint;
+	private MasterPoint masterPoint;
 	
 	private int ret;
 	
@@ -31,10 +31,10 @@ public class MasterAction extends ActionSupport {
 		CommonUtil util = new CommonUtil();
 		HttpSession session = request.getSession();
 		
-		String latitude = request.getParameter("masterpoint.latitude");
-		String longitude = request.getParameter("masterpoint.longitude");
-		String ticketnumber = request.getParameter("masterpoint.ticket");
-		String radius = request.getParameter("masterpoint.radius");
+		String latitude = request.getParameter("masterPoint.latitude");
+		String longitude = request.getParameter("masterPoint.longitude");
+		String ticketnumber = request.getParameter("masterPoint.allTicket");
+		String radius = request.getParameter("masterPoint.radius");
 		
 		if(util.isNullOrEmpty(latitude)
 				|| util.isNullOrEmpty(longitude) 
@@ -44,18 +44,18 @@ public class MasterAction extends ActionSupport {
 		}
 		
 		try {
-			masterpoint = new MasterPoint();
-			masterpoint.setLatitude(Double.valueOf(latitude).doubleValue());
-			masterpoint.setLongitude(Double.valueOf(longitude).doubleValue());
-			masterpoint.setTicket(Integer.parseInt(ticketnumber));
-			masterpoint.setAllTicket(Integer.parseInt(ticketnumber));
-			masterpoint.setRadius(Double.valueOf(radius).doubleValue());
+			masterPoint = new MasterPoint();
+			masterPoint.setLatitude(Double.valueOf(latitude).doubleValue());
+			masterPoint.setLongitude(Double.valueOf(longitude).doubleValue());
+			masterPoint.setTicket(Integer.parseInt(ticketnumber));
+			masterPoint.setAllTicket(Integer.parseInt(ticketnumber));
+			masterPoint.setRadius(Double.valueOf(radius).doubleValue());
 		} catch (Exception e){
 			ret = -1;
 			return SUCCESS;
 		}
 		
-		GpsConstant.setMasterPoint(masterpoint);
+		GpsConstant.setMasterPoint(masterPoint);
 		session.setAttribute("setMaster", "OK");
 		ret = 0;
 		// reset ipList
@@ -65,13 +65,13 @@ public class MasterAction extends ActionSupport {
 	}
 	
 	public String mview() throws Exception {
-		masterpoint = new MasterPoint();
+		masterPoint = new MasterPoint();
 		setIpMap(new HashMap<String, Position>());
 		
 		setIpMap(GpsConstant.getTicketIpList());
-		setMasterpoint(GpsConstant.getMasterPoint());
+		setMasterPoint(GpsConstant.getMasterPoint());
 		
-		if(masterpoint == null){
+		if(masterPoint == null){
 			return "master";
 		}
 		
@@ -79,20 +79,20 @@ public class MasterAction extends ActionSupport {
 	}
 	
 	public String mview2master() throws Exception {
-		masterpoint = new MasterPoint();
+		masterPoint = new MasterPoint();
 		
-		setMasterpoint(GpsConstant.getMasterPoint());
+		setMasterPoint(GpsConstant.getMasterPoint());
 		
 		return SUCCESS;
 	}
 
 
-	public MasterPoint getMasterpoint() {
-		return masterpoint;
+	public MasterPoint getMasterPoint() {
+		return masterPoint;
 	}
 
-	public void setMasterpoint(MasterPoint masterpoint) {
-		this.masterpoint = masterpoint;
+	public void setMasterPoint(MasterPoint masterPoint) {
+		this.masterPoint = masterPoint;
 	}
 
 	public Map<String, Position> getIpMap() {

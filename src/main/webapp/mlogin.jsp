@@ -5,51 +5,76 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="viewport"
+	content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<title>区域内优惠券发行终端</title>
+<title>区域内优惠券发行终端——登录页面</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/javascript" src="scripts/json2.js"></script>
 <script type="text/javascript" src="scripts/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="scripts/mlogin.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<style type="text/css">
+body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-top: 5%;
+}
+
+.block {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-top: 8%;
+}
+
+.block_10px {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-top: 10px;
+}
+
+.block_50px {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-top: 50px;
+}
+</style>
 
 </head>
 <body>
+	<h1 class="text-center">登 录 页 面</h1>
+	<div class="block"></div>
+	<s:form id="login_form" action="mlogin">
+		<div class="row">
+			<div class="col-xs-offset-4 col-xs-4">
+				<label for="password" style="font-size: 20px">请输入密码:</label>
+				<div class="block_10px"></div>
+				<input id="password" name="password" class="form-control" type="password"/>
+				<div class="row">
+					<div class="col-md-offset-4 col-md-4" style="text-align: center"><br/>
+						<button class="btn btn-primary btn-lg" onclick="OnSubmit()">登 录</button>
+					</div>
+					<s:hidden name="errMsg" id="errMsg_hidden"/>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div class="block_50px"></div>
+				<label id="errMsg_label" style="display: none; color: red">你的密码不正确!</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-offset-4 col-xs-4">
+				<s:hidden name="errMsg" id="errMsg_hidden" />
+			</div>
+		</div>
 
-<div class="container-fluid" align="center">
-	<div class="page-header">
-		<h1>区域内优惠券发行终端</h1>
-		<h1><small>——登陆页面</small></h1>
-	</div>
-
-	<form class="form-horizontal">
-	  <div class="form-group" id="pwdInput">
-	    <label for="password" class="col-sm-offset-2 col-sm-2 control-label">密码</label>
-	    <div class="col-sm-4">
-	      <input type="password" class="form-control" id="password" placeholder="密码">
-	    </div>
-	    <div class="col-sm-2">
-	     <s:if test="errMsg!=null">
-			   <label for="passwordError" class="control-label inputErr text-left text-danger">密码错误！</label>
-			 </s:if>
-			 </div>
-	  </div>
-	  <div class="form-group">
-	    <div class="col-sm-offset-4 col-sm-4">
-	      <a class="btn btn-primary btn-lg btn-block" href="javascript:void(0);" onclick="MLogin()" role="button">登 録</a>
-	    </div>
-	  </div>
-	</form>
-
-	<s:form id="form" method="post" action='mlogin'>
-	  <s:hidden id="hidpwd" name="password"></s:hidden>
-	  <s:hidden id="hidErrMsg" name="errMsg"></s:hidden>
 	</s:form>
-</div>
 </body>
 </html>

@@ -29,7 +29,6 @@
   <p><a href="<s:url action='index' />" >返回主页</a></p>
     <p>请与系统管理员联系。</p> 
     <h4>异常情报：<s:property value="exception" /> </h4>
-    <!-- <h4>Exception Details: <s:property value="exceptionStack" /></h4>  -->
 </div>
 </body>
 </html>

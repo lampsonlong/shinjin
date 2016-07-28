@@ -22,7 +22,7 @@
   <default-action-ref name="index" />
   
     <global-results>
-	 <result name="error">/Error.jsp</result>
+	 <result name="error">/error.jsp</result>
 	 <result name="mlogin">/mlogin.jsp</result>
 	</global-results>
  

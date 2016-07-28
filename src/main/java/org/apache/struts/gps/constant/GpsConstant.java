@@ -14,7 +14,7 @@ public class GpsConstant {
     
     private static MasterPoint masterPoint;
 	
-	private static final String pwd = "a123";
+	private static final String pwd = "pshpsh";
 	
 	private static String userInfo = "bPfeWr1!asd53K0";
 	

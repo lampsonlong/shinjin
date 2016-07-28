@@ -18,7 +18,7 @@ public class MLoginAction extends ActionSupport {
 	
 	private String errMsg;
 	
-	private MasterPoint masterpoint;
+	private MasterPoint masterPoint;
 	
 	public String execute() throws Exception {
 		HttpServletRequest request = (HttpServletRequest)
@@ -31,7 +31,7 @@ public class MLoginAction extends ActionSupport {
 		
 		if(password == null || !GpsConstant.getPwd().equals(password)) {
 			if(util.isLogin(session)){
-				masterpoint = GpsConstant.getMasterPoint();
+				masterPoint = GpsConstant.getMasterPoint();
 				return SUCCESS;
 			} else{
 				setErrMsg("Password Invalid !");
@@ -43,7 +43,7 @@ public class MLoginAction extends ActionSupport {
 		GpsConstant.setUserinfo(uuid.toString());
 		session.setAttribute("userInfo", uuid);
 		
-		masterpoint = GpsConstant.getMasterPoint();
+		masterPoint = GpsConstant.getMasterPoint();
 		
 		return SUCCESS;
 	}
@@ -56,7 +56,7 @@ public class MLoginAction extends ActionSupport {
 		this.errMsg = errMsg;
 	}
 
-	public MasterPoint getMasterpoint() {
-		return masterpoint;
+	public MasterPoint getMasterPoint() {
+		return masterPoint;
 	}
 }
