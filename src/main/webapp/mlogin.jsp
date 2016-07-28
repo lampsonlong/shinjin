@@ -53,7 +53,8 @@ body{
 				<div class="col-xs-offset-4 col-xs-4">
 					<label for="password" style="font-size: 20px">请输入密码:</label>
 					<div class="block_10px"></div>
-					<input id="password" name="password" class="form-control" type="password" />
+					<input id="password" name="password" class="form-control" type="password" /> 
+					<label id="errMsg_label" style="position: relative; display: none; color: red">你的密码不正确!</label>
 					<div class="row">
 						<div class="col-md-offset-4 col-md-4" style="text-align: center">
 							<br/>
@@ -62,8 +63,6 @@ body{
 						<s:hidden name="errMsg" id="errMsg_hidden" />
 					</div>
 				</div>
-				<div class="block_50px"></div>
-				<label id="errMsg_label" style="position: relative; display: none; color: red">你的密码不正确!</label>
 			</div>
 		</s:form>
 	</div>
