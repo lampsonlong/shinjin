@@ -29,8 +29,8 @@
 		<div style="margin-top:20px;" align="center">
 			<div class="form-inline">
 				<div class="row">
-					<div class="col-md-4"></div>
-					<div class="col-md-4">
+					<div class="col-xs-2"></div>
+					<div class="col-xs-8">
 						<div class="form-group">
 							<label style="font-size:20px;">区域中心</label>
 							<input class="form-control" type="text" id="area_center" style="width:200px;font-size:20px;">
@@ -44,8 +44,8 @@
 				<input type="hidden" id="latitude" name="masterPoint.latitude" value="${requestScope.masterPoint.latitude}"/>
 				<div class="form-inline" style="margin-top:20px;">
 					<div class="row">
-						<div class="col-md-4"></div>
-						<div class="col-md-4">
+						<div class="col-xs-4"></div>
+						<div class="col-xs-4">
 							<div class="form-group">
 								<label style="font-size:20px;">区域半径</label>
 								<div class="input-group">
@@ -58,8 +58,8 @@
 				</div>
 				<div class="form-inline" style="margin-top:20px;">
 					<div class="row">
-						<div class="col-md-4"></div>
-						<div class="col-md-4">
+						<div class="col-xs-4"></div>
+						<div class="col-xs-4">
 							<div class="form-group">
 								<label style="font-size:20px;">优惠券数</label>
 								<div class="input-group">
@@ -73,8 +73,8 @@
 			</form>
 			<label id="msg" style="color:#ff0000;"></label>
 			<div class="row">
-				<div class="col-md-4"></div>	
-				<div class="col-md-4" style="margin-top:20px;">
+				<div class="col-xs-4"></div>	
+				<div class="col-xs-4" style="margin-top:20px;">
 					<s:url var="list" action="mview"></s:url>
 					<button class="btn btn-primary btn-lg" onclick="FormSubmit()">设定</button>
 					<s:a href="%{list}" id="a_list"><button  type="button"  id="btn_list" class="btn btn-primary btn-lg" >一览</button></s:a>
