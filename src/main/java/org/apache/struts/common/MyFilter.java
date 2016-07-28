@@ -38,6 +38,7 @@ public class MyFilter implements Filter {
         } else if("/mlogin.jsp".equals(url)
         		|| url.endsWith(".js")
         		|| url.endsWith(".css")
+        		|| url.endsWith(".jpg")
         		|| url.endsWith("gps.action")
         		|| url.endsWith("mlogin.action")){
         	// no check
@@ -51,10 +52,10 @@ public class MyFilter implements Filter {
         } else if (url.startsWith("/m")
         		&& url.endsWith(".jsp")){
         	toMLogin = true;
-        } else {
+        }/* else {
         	// not exist page
         	toIndex = true;
-        }
+        }*/
         
         if (toIndex) {
         	response.setContentType("text/html;charset=utf-8");
