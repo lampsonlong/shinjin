@@ -33,13 +33,13 @@
 					<div class="col-xs-8">
 						<div class="form-group">
 							<label style="font-size:20px;">区域中心</label>
-							<input class="form-control" type="text" id="area_center" style="width:200px;font-size:20px;">
+							<input class="form-control" type="text" id="area_center" style="width:200px;font-size:20px;line-height:20px;">
 							<button class="btn btn-primary" onclick="PointSearch()" >检索</button><br>
 						</div>
 					</div>
 				</div>
 			</div>
-			<s:form action="master" method="post" id="form_master" class="form-horizontal" >
+			<form action="master" method="post" id="form_master" class="form-horizontal" >
 				<input type="hidden" id="longitude" name="masterPoint.longitude" value="${requestScope.masterPoint.longitude}"/>
 				<input type="hidden" id="latitude" name="masterPoint.latitude" value="${requestScope.masterPoint.latitude}"/>
 				<div class="form-inline" style="margin-top:20px;">
@@ -49,7 +49,7 @@
 							<div class="form-group">
 								<label style="font-size:20px;">区域半径</label>
 								<div class="input-group">
-				      				<input type="text" class="form-control" id="area_radius" name="masterPoint.radius" style="width:215px;font-size:20px;" value="${requestScope.masterPoint.radius}">
+				      				<input type="text" class="form-control" id="area_radius" name="masterPoint.radius" style="width:215px;font-size:20px;line-height:20px;" value="${requestScope.masterPoint.radius}">
 				      				<div class="input-group-addon">米</div>
 				    			</div>
 							</div>
@@ -63,14 +63,14 @@
 							<div class="form-group">
 								<label style="font-size:20px;">优惠券数</label>
 								<div class="input-group">
-				      				<input type="text" class="form-control" id="coupon_number" name="masterPoint.allTicket" style="width:215px;font-size:20px;" value="${requestScope.masterPoint.allTicket}">
+				      				<input type="text" class="form-control" id="coupon_number" name="masterPoint.allTicket" style="width:215px;font-size:20px;line-height:20px;" value="${requestScope.masterPoint.allTicket}">
 				      				<div class="input-group-addon">张</div>
 				    			</div>
 							</div>
 						</div>
 					</div>
 				</div>	
-			</s:form>
+			</form>
 			<label id="msg" style="color:#ff0000;"></label>
 			<div class="row">
 				<div class="col-xs-4"></div>	

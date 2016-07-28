@@ -66,10 +66,8 @@ function Init() {
 function getLocation() {
 	if (navigator.geolocation) {	// 成功获取到地理位置
 		// 上传地理位置到服务器进行抢票
-		navigator.geolocation.getCurrentPosition(ShowPosition);
-    } else {	// 未能获取到地理位置
-		$("#index_inform").innerHTML="该浏览器不支持获取地理位置。";
-	}
+		navigator.geolocation.getCurrentPosition(ShowPosition, errCallback);
+    }
 }
 
 /**
@@ -88,4 +86,9 @@ function ShowPosition(position) {
 	$("#gps_form").submit();
 }
 
-
+function errCallback(err){
+	$("#index_inform").html("您的设备未能正常获取到地理位置数据，请尝试刷新页面或打开浏览器地理位置权限。");
+	$("#scansnap").attr("src","pic/kcode_gps.jpg");
+	$("#scansnap").show();
+	$("#index_inform").show();
+}
