@@ -114,4 +114,4 @@ function loadJScript() {
 	document.body.appendChild(script);
 }
 
-window.onload = loadJScript;  //异步加载地图
+//window.onload = loadJScript;  //异步加载地图

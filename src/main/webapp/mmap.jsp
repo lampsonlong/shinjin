@@ -23,7 +23,7 @@
 
 </head>
 <body>
-	<div class="container-fluid flt">
+	<div class="container-fluid">
 		<h1 align="center">设 定 页 面</h1>
 		<div id="map" style="width:80%;height:400px;margin:0 auto;"></div>
 		<div style="margin-top:20px;" align="center">
