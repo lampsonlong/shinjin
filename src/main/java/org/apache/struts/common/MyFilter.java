@@ -48,13 +48,13 @@ public class MyFilter implements Filter {
         	if(!util.isLogin(session)){
         		toMLogin = true;
         	}
-        } else if (url.startsWith("/m")
+        } /*else if (url.startsWith("/m")
         		&& url.endsWith(".jsp")){
         	toMLogin = true;
         } else {
         	// not exist page
         	toIndex = true;
-        }
+        }*/
         
         if (toIndex) {
         	response.setContentType("text/html;charset=utf-8");

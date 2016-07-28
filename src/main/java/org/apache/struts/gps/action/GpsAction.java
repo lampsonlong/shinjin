@@ -20,7 +20,7 @@ public class GpsAction extends ActionSupport {
     
     private Position position;
     
-    private int ret = 9;
+    private int ret = -9999;
 	
 	public String execute() throws Exception {
 		HttpServletRequest request = (HttpServletRequest)
@@ -44,19 +44,21 @@ public class GpsAction extends ActionSupport {
 		}
 		
 		if (latitude == null || longitude == null) {
+			setRet(9);
 			return SUCCESS;
 		} else {
 			position = new Position();
 			
 			try{
-				position.setLatitude(Double.valueOf(latitude).doubleValue());
-				position.setLongitude(Double.valueOf(longitude).doubleValue());
-			} catch(Exception e){
-				setRet(-9999);
+			position.setLatitude(Double.valueOf(latitude).doubleValue());
+			position.setLongitude(Double.valueOf(longitude).doubleValue());
+			} catch (Exception e){
 				return SUCCESS;
 			}
+			
 			position.setDatetime(nowTimeGMT);
 			position.setIp(ip);
+			
 			
 			GpsService gpsService = new GpsService();
 			

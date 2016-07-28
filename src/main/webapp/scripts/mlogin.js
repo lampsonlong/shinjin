@@ -24,10 +24,10 @@ function Init() {
 
 /**
  * 函数名：	OnSubmit()
- * 函数说明	登陆操作
+ * 函数说明	登录操作
  * 
  * @returns
  */
-function OnSubmit() {	// 登陆
+function OnSubmit() {	// 登录
 	$("#login_form").submit();
 }
